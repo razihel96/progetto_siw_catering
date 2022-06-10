@@ -12,23 +12,23 @@
     </div>
 
 	<form th:action="@{/login}" method="POST">
-		<div id="container_login">
-			<div id="username_login">
+		<div class="container_login">
+			<div class="nomi_placeholder">
 				<span>Username:</span>
 				<span><input name="username" type="text" required /></span>
 			</div>		
-			<div id="password_login">
+			<div class="nomi_placeholder">
 				<span>Password:</span>
 				<span><input name="password" type="password" required /></span>
 			</div>
 			<div>
-				<span><button id="login" type="submit">Login</button></span>
+				<span><button class="login" type="submit">Login</button></span>
 			</div>
 		</div>
 	</form>
 
-    <footer id="footer_login">
-    	<a href="/"><img id="img_login" src="images/home.png" alt=""> Home</a>
+    <footer class="footer_login">
+    	<a href="/"><img id="img_login" src="home.png" alt=""> Home</a>
     </footer>
     
   
