@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title> Inserimento buffet </title>
+</head>
+
+<body>
+<form th:action = "@{/buffet}" method = "post" th:object = "${buffet}">
+
+	<div th:if="${#fields.hasGlobalErrors()}">
+		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">ERRORE</p>
+	</div>
+	  
+	<div> Nome: <input type="text" th:field="*{nome}" /> </div>
+	<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+	
+	<div> Descrizione: <input type="text" th:field="*{descrizione}" /> </div>
+	<div th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></div>
+	
+	
+	<div th:text=*{chef.nome}> mi ritorna il nome dello chef </div>
+	
+		
+	
+	<div> 
+		<input type="hidden" name="idChef" th:value=*{chef.id}>
+		<button type="submit"> Conferma </button> 
+	</div>
+</form>	
+</body>
+
+
+</html>

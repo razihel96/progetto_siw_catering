@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a { 
+    color: black;
+    text-decoration: none;
+}
+
+
+/**************/
+/****INDEX*****/
+/**************/
+
+.body_index_login {
+    background-image: url(/images/cateringfoto5.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.nome_index_login { 
+    font-size: 70px;
+    text-align: center;
+    margin-top: 130px;
+    color: aliceblue;
+    box-shadow: 12px 12px 32px black;
+    margin-bottom: 30px;
+}
+
+#container_index {
+    /*border: 2px solid blue;*/
+
+    
+    width: 100%;
+    height: 300px;
+    margin: auto;
+    margin-top: 40px;
+
+    display: flex;
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+.a_index {
+    /*border: 2px solid blue;*/
+    font-size: 20px;
+    cursor: pointer;
+
+    background-color: aliceblue;
+    padding: 8px 15px 8px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.a_index:hover {
+    background-color: rgb(151, 48, 48) ;
+    color: aliceblue;
+    font-size: 22px;
+    box-shadow: 3px 3px 5px black;
+}
+
+#accedi {
+    margin-bottom: 40px;
+    padding: 10px;
+}
+
+#registrati {
+    padding: 10px;
+}
+
+
+
+
+
+
+
+/**************/
+/****LOGIN*****/
+/**************/
+
+
+#login {
+    /*border: 2px solid blue;*/
+    font-size: 20px;
+    cursor: pointer;
+
+    background-color: aliceblue;
+    padding: 8px 15px 8px 15px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 20px;
+}
+
+#login:hover {
+    background-color: rgb(151, 48, 48);
+    color: aliceblue;
+    box-shadow: 3px 3px 5px black;
+}
+
+
+#container_login {
+    /* border: 2px solid blue;*/
+ 
+     
+     width: 40%;
+     height: 200px;
+     background-color: aliceblue;
+     margin: auto;
+     border-radius: 10px;
+ 
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+ 
+     text-align: center;
+ }
+
+
+ #img_login {
+    width: 30px;
+    height: 30px;
+}
+
+#username_login {
+    /*border: 2px solid blue;*/
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+#password_login {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+#footer_login {
+    padding: 20px;
+    font-size: 20px;
+}

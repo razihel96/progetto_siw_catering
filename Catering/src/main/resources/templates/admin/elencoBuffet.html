@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	
+	<title>Elenco buffet</title>
+</head>
+
+<body>
+	<div>
+		<h4>Elenco buffet:</h4>
+		<ul>
+			<li th:each="buffet : ${elencoBuffet}">
+			
+			<a href="buffet.html" th:href="@{'/buffet' + '/' + ${buffet.id}}" 
+			th:text="${buffet.nome}">NOME</a>
+			
+			<a href ="buffet.html" th:href="@{'/toDeleteBuffet' + '/' + ${buffet.id}}"
+			th:text="cancella">cancella</a>
+		
+			
+			</li> 
+			
+			
+		</ul>
+	</div>
+		
+	<footer>
+		<a href="/default"> Home </a>
+	</footer>
+</body>
+</html>

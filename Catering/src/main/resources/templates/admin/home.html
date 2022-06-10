@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title> Catering </title>
+</head>
+
+<body>
+
+	<h6>Menu Amministratore</h6>
+		
+	<h4> CATERING </h4>
+	<div>
+		<a th:href="@{/chefForm}"> Inserisci Chef </a>
+		<a th:href="@{/chef}"> </a> 
+	</div>	
+	<div>
+		<a th:href="@{/elencoChef}"> Visualizza gli Chef </a>
+		<a th:href="@{/chef}"> </a> 
+	</div>
+	<br>
+	<div>
+		<a th:href="@{/logout}">Logout</a>
+    </div>
+
+		
+</body>
+</html>

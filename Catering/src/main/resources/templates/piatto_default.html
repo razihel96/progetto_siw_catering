@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title> Dettagli piatto </title>
+</head>
+
+<body>
+	<h6>Menu Default</h6>
+
+	<div>
+		<h4> Dettagli piatto </h4>
+		<div>
+			<div>Nome del piatto: <span th:text = "${piatto.nome}"> NOME </span> </div>
+			<div>Descrizione: <span th:text = "${piatto.descrizione}"> DESCRIZIONE </div>
+			<br>
+			
+		</div>
+	</div>
+	<br>
+	<br>
+	<footer><a href="/default"> Home </a></footer>
+</body>
+</html>

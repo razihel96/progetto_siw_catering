@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1" />
+	<title>Conferma Cancellazione</title>
+</head>
+
+<body>
+	<div>
+		<h4>Buffet da cancellare:</h4>
+		<div>
+			<span th:text = "${buffet.nome}"> NOME </span>
+			<span th:text = "${buffet.descrizione}"> DESCRIZIONE </span>
+		</div>
+		
+		<div>
+			<a href ="buffet.html" th:href="@{'/deleteBuffet' + '/' + ${buffet.id}}"
+			th:text="CONFERMA">CONFERMA CANCELLAZIONE</a>
+		</div>	
+	</div>
+		
+</body>
+</html>

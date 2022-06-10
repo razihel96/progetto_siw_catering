@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+	<meta charset="UTF-8" />
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	
+	<title> LoginForm </title>
+</head>
+<body class="body_index_login">
+    <div class="nome_index_login">
+        <h1>ROMA3 CATERING</h1>
+    </div>
+
+	<form th:action="@{/login}" method="POST">
+		<div id="container_login">
+			<div id="username_login">
+				<span>Username:</span>
+				<span><input name="username" type="text" required /></span>
+			</div>		
+			<div id="password_login">
+				<span>Password:</span>
+				<span><input name="password" type="password" required /></span>
+			</div>
+			<div>
+				<span><button id="login" type="submit">Login</button></span>
+			</div>
+		</div>
+	</form>
+
+    <footer id="footer_login">
+    	<a href="/"><img id="img_login" src="images/home.png" alt=""> Home</a>
+    </footer>
+    
+  
+</body>
+</html>

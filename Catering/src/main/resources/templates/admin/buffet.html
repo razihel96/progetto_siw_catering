@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title> Dettagli buffet </title>
+</head>
+
+<body>
+	<div>
+		<h4> Dettagli buffet </h4>
+		<div>
+		
+		
+			<span th:text = "${buffet.nome}"> NOME </span>
+			<br>
+			<span th:text = "${buffet.descrizione}"> DESCRIZIONE </span>
+			<br>
+			<br>			
+		    <a th:href="@{'/buffet' + '/' + ${buffet.id} + '/piattoForm'}"> Inserisci piatto </a> 
+			<br>
+			<a th:href="@{'/buffet' + '/' + ${buffet.id} + '/elencoPiatti'}"> Visualizza piatti </a>
+			
+			<br>
+			<br>
+			
+			
+		</div>
+	</div>
+	<footer><a href="/default"> Home </a></footer>
+</body>
+</html>
