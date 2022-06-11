@@ -2,23 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<title> Catering </title>
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	
+	<title>Roma3 Catering</title>
 </head>
 
-<body>
-	
-	<h6>Menu Default</h6>
-		
-	<h4> CATERING: GLI CHEF </h4>
+<body class="body_index_login">
 
-	<div>
-		<a th:href="@{/elencoChef}"> Visualizza gli Chef </a>
-		<a th:href="@{/chef}"> </a> 
-	</div>
-	
-	<div>
-		<a th:href="@{/logout}">Logout</a>
+    <div class="nome_index_login">
+        <h1>ROMA3 CATERING</h1>
     </div>
+
+	<div id="container_home">
+
+        <h2>Perchè scegliere il nostro Catering?</h2>
+            
+            Ti offriamo un servizio di catering organizzato ed efficiente 
+            per ogni tuo desiderio o necessità. La Roma3 Catering sa come 
+            avverare ogni tuo sogno o fantasia, portandoti odori e sapori 
+            dell’antica tradizione romana, offrendoti un prodotto altamente 
+            personalizzato. 
+        
+        <h3>Dai un'occhiata ai nostri migliori 
+		<a class="a_index" th:href="@{/elencoChef}"> CHEF </a>
+		<a th:href="@{/chef}"> </a> 
+        <img id="img_home" src="images/mano.png" alt="">
+        </h3>
+
+
+        <a class="a_index" th:href="@{/logout}">Logout</a>
+
+	</div>
 
 		
 </body>

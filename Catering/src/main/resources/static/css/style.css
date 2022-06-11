@@ -144,3 +144,63 @@ td {
     padding: 20px;
     font-size: 20px;
 }
+
+
+
+
+
+
+
+/**********************/
+/*****HOME_DEFAULT*****/
+/**********************/
+
+#container_home {
+    /*border: 2px solid blue;*/
+    
+
+    width: 50%;
+    margin: auto;
+
+    text-align: justify;
+
+    height: 300px;
+    background-color: rgb(240, 248, 255, 0.8);
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0px 30px 0px 30px;
+    
+}
+
+#container_home h2 {
+    color: rgb(151, 48, 48);
+    font-size: 32px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: center;
+
+}
+
+
+#container_home h3 {
+    /*border: 2px solid red;*/
+
+    margin-top: 45px;
+    font-size: 30px;
+    margin-bottom: 50px;
+
+}
+
+#img_home {
+    /*border: 2px solid red;*/
+
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-bottom: -5px;
+}
