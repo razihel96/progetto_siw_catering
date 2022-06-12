@@ -16,5 +16,5 @@ public interface PiattoRepository extends CrudRepository<Piatto, Long> {
 	public List<Piatto> findByBuffet(Buffet buffet);
 	
 	//gli passo un ingrediente mi restituisce una lista di piatti
-//	public List<Piatto> findByIngredienti(Ingrediente ingrediente);
+	public List<Piatto> findByIngredienti(Ingrediente ingrediente);
 }

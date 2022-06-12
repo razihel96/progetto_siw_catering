@@ -5,6 +5,8 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,10 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.controller.validator.IngredienteValidator;
+import com.example.demo.model.Credentials;
 import com.example.demo.model.Ingrediente;
 import com.example.demo.model.Piatto;
+import com.example.demo.service.CredentialsService;
 import com.example.demo.service.IngredienteService;
 import com.example.demo.service.PiattoService;
 
@@ -29,47 +33,54 @@ public class IngredienteController {
 	@Autowired
 	private PiattoService piattoService;
 	
+	@Autowired
+	private CredentialsService credentialsService;
+	
+	@Autowired
+	private IngredienteValidator ingredienteValidator;
+	
 
 	@PostMapping("/admin/ingrediente")
-	public String addIngrediente(@Valid @ModelAttribute ("ingrediente") Ingrediente ingrediente, @Valid @ModelAttribute ("piatto") Piatto piatto,
+	public String addIngrediente(@Valid @ModelAttribute ("ingrediente") Ingrediente ingrediente,
 			BindingResult bindingResult, Model model) {
-
-//		Long id = Long.valueOf(idPiatto);
-//		List<Piatto> ingredienteInPiuPiatti = piattoService.;
-//		ingrediente.setIngredienteInPiuPiatti(ingredienteInPiuPiatti);
-
 		
 		//i doppioni dovrebbero andare bene
-		
+		ingredienteValidator.validate(ingrediente, bindingResult);
+
 
 		//poi verifichiamo che non ci siano stati errori nella validazione
 
 		//se non ci sono errori
 		if(!bindingResult.hasErrors()) {
 			//salvo gli oggetti ingrediente e piatto
-			piatto.addIngrediente(ingrediente);
-			piattoService.save(piatto);
+			ingredienteService.save(ingrediente);
 
 			//li aggiungo al modello
 			model.addAttribute("ingrediente", ingrediente);
-			model.addAttribute("piatto", piatto);
 
 			//se è andato tutto a buon fine
-			return "ingrediente.html";
+			return "admin/ingrediente.html";
 		}
 		//se qualcosa è andato storto, torno alla form
-		return "ingredienteForm.html";
+		return "admin/ingredienteForm.html";
 	}
 	
 	
 	//prendo l'elenco degli ingredienti tramite l'id del piatto
-//	@GetMapping("/piatto/{id}/elencoIngredienti")
-//	public String getElencoIngredienti(@PathVariable ("id") Long id, Model model) {
-//		Piatto piatto = piattoService.findById(id);
-//		List<Ingrediente> ingrediente = ingredienteService.getByPiatti(piatto);
-//		model.addAttribute("elencoIngredienti", ingrediente);
-//		return "elencoIngredienti.html";
-//	}
+	@GetMapping("/piatto/{id}/elencoIngredienti")
+	public String getElencoIngredienti(@PathVariable ("id") Long id, Model model) {
+		Piatto piatto = piattoService.findById(id);
+		List<Ingrediente> elencoIngredienti = ingredienteService.getByPiatto(piatto);
+		model.addAttribute("elencoIngredienti", elencoIngredienti);
+		
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+            return "admin/elencoIngredienti.html";
+        }
+        return "elencoIngredienti_default.html";
+    }
+	
 	
 	
 	//prendo l'ingrediente per il suo id
@@ -77,8 +88,15 @@ public class IngredienteController {
 	public String getIngrediente(@PathVariable ("id") Long id, Model model) {
 		Ingrediente ingrediente = ingredienteService.findById(id);
 		model.addAttribute("ingrediente", ingrediente);
-		return "ingrediente.html";
-	}
+		
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+            return "admin/ingrediente.html";
+        }
+        return "ingrediente_default.html";
+    }
+
 	
 	
 
@@ -93,6 +111,6 @@ public class IngredienteController {
 		Ingrediente ingrediente = new Ingrediente();
 		model.addAttribute("ingrediente", ingrediente);
 		model.addAttribute("piatto", piatto);
-		return "ingredienteForm.html";
+		return "admin/ingredienteForm.html";
 	}
 }

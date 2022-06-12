@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.demo.controller.validator.ChefValidator;
 import com.example.demo.model.Chef;
 import com.example.demo.model.Credentials;
-import com.example.demo.service.BuffetService;
 import com.example.demo.service.ChefService;
 import com.example.demo.service.CredentialsService;
 
@@ -32,16 +31,16 @@ public class ChefController {
 	private ChefValidator chefValidator;
 	
 	@Autowired
-	private BuffetService buffetService;
-	
-	@Autowired
 	private CredentialsService credentialsService;
+	
 	
 	
 	@PostMapping("/admin/chef")
 	public String addChef(@Valid @ModelAttribute ("chef") Chef chef, BindingResult bindingResult, Model model) {
 		
-		//in questo caso possono esistere più chef 
+		//controlla se non ci sono doppioni
+		chefValidator.validate(chef, bindingResult);
+
 		
 		//se non ci sono errori
 		if(!bindingResult.hasErrors()) {

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Buffet;
+import com.example.demo.model.Chef;
+import com.example.demo.model.Ingrediente;
 import com.example.demo.model.Piatto;
 import com.example.demo.repository.PiattoRepository;
 
@@ -45,7 +47,18 @@ public class PiattoService {
 			piattiPerBuffet.add(p);
 		}
 		return piattiPerBuffet;
-		
+	}
+	
+	/*
+	 * mi ritorna la lista dei piatti corrispondenti ad un ingrediente
+	 */
+	public List<Piatto> getByIngrediente(Ingrediente ingredienti) {
+		List<Piatto> piattoPerIngrediente = new ArrayList<>();
+		Iterable<Piatto> i = pr.findByIngredienti(ingredienti);
+		for(Piatto p : i) {
+			piattoPerIngrediente.add(p);
+		}
+		return piattoPerIngrediente;
 	}
 	
 
@@ -70,5 +83,7 @@ public class PiattoService {
 	public void deleteById(Long id) {
 		pr.deleteById(id);
 	}
+
+
 
 }

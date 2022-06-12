@@ -39,19 +39,19 @@ public class IngredienteService {
 	}
 	
 	
+
 	
 	/*
-	 * mi ritorna gli ingredienti di un piatto
+	 * mi ritorna la lista degli ingredienti corrispondenti ad un piatto
 	 */
-//	public List<Ingrediente> getByPiatti(Piatto piatto) {
-//		List<Ingrediente> ingredientiPerPiatto = new ArrayList<>();
-//		Iterable<Ingrediente> i = ir.findByPiatti(piatto);
-//		for(Ingrediente ing : i) {
-//			ingredientiPerPiatto.add(ing);
-//		}
-//		return ingredientiPerPiatto;
-//		
-//	}
+	public List<Ingrediente> getByPiatto(Piatto piatto) {
+		List<Ingrediente> ingredientiPerPiatto = new ArrayList<>();
+		Iterable<Ingrediente> i = ir.findByPiatti(piatto);
+		for(Ingrediente ing : i) {
+			ingredientiPerPiatto.add(ing);
+		}
+		return ingredientiPerPiatto;
+	}
 	
 
 	//mi ritorna la lista degli ingredienti
@@ -69,6 +69,10 @@ public class IngredienteService {
 	//cancella ingrediente da id
 	public void deleteById(Long id) {
 		ir.deleteById(id);
+	}
+
+	public boolean alreadyExists(Ingrediente ingrediente) {
+		return ir.existsByNome(ingrediente.getNome());
 	}
 
 }
