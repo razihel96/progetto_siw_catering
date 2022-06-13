@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Chef {
 	 * JPA
 	 */
 	//bidirezionale
-	@OneToMany (mappedBy = "chef")
+	@OneToMany (mappedBy = "chef", cascade = CascadeType.ALL)
 	private List<Buffet> buffetChef; //ogni chef propone più buffet 
 
 	

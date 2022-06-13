@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1" />
+	<title>Conferma Cancellazione</title>
+</head>
+
+<body>
+	<div>
+		<h4>Chef da cancellare:</h4>
+		<div>
+			<span th:text = "${chef.nome}"> NOME </span>
+			<span th:text = "${chef.cognome}"> COGNOME </span>
+			<span th:text = "${chef.nazionalita}"> NAZIONALITA </span>
+			
+		</div>
+		
+		<div>
+			<a href ="chef.html" th:href="@{'/deleteChef' + '/' + ${chef.id}}"
+			th:text="CONFERMA">CONFERMA CANCELLAZIONE</a>
+		</div>	
+	</div>
+		
+</body>
+</html>

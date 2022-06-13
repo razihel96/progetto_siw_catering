@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class Buffet {
 	@ManyToOne
 	private Chef chef; //i buffet vengono proposti da un solo chef
 	
-	@OneToMany(mappedBy= "buffet")
+	@OneToMany(mappedBy= "buffet", cascade = CascadeType.ALL)
 	private List<Piatto> piattiBuffet; //ogni buffet contiene più piatti
 	
 	

@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -44,7 +43,7 @@ public class Piatto {
 			inverseJoinColumns = @JoinColumn(name = "ingrediente_id")
 			)
 	
-	private Set<Ingrediente> ingredienti; //un piatto può avere più ingredienti
+	private List<Ingrediente> ingredienti; //un piatto può avere più ingredienti
 	
 	
 
@@ -82,11 +81,11 @@ public class Piatto {
 		this.buffet = buffet;
 	}
 
-	public Set<Ingrediente> getIngredientiPiatto() {
+	public List<Ingrediente> getIngredientiPiatto() {
 		return ingredienti;
 	}
 
-	public void setIngredientiPiatto(Set<Ingrediente> ingredienti) {
+	public void setIngredientiPiatto(List<Ingrediente> ingredienti) {
 		this.ingredienti = ingredienti;
 	}
 	

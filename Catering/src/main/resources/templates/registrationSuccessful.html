@@ -2,17 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	
 	<title>Registrazione</title>
 </head>
-<body>
+<body class="body_index_login">
 
-	<div>
-    	<h4>Registrazione</h4>
-		<h1>Congratulazioni ti sei registrato!</h1>
+    <div class="nome_index_login">
+        <h1>ROMA3 CATERING</h1>
+    </div>
+
+	<div  class="container_login">
+		<h1>Congratulazioni, ti sei registrato!</h1>
+        <a id="home_rs" href="/"><img id="img_login" src="images/home.png" alt=""> Home</a>
 	</div>
 	
-    <footer>
-        <a href="/">Home</a>
-    </footer>
 </body>
 </html>

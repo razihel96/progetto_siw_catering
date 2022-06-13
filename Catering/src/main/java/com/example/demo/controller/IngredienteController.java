@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -44,24 +45,14 @@ public class IngredienteController {
 	public String addIngrediente(@Valid @ModelAttribute ("ingrediente") Ingrediente ingrediente,
 			BindingResult bindingResult, Model model) {
 		
-		//i doppioni dovrebbero andare bene
 		ingredienteValidator.validate(ingrediente, bindingResult);
 
 
-		//poi verifichiamo che non ci siano stati errori nella validazione
-
-		//se non ci sono errori
 		if(!bindingResult.hasErrors()) {
-			//salvo gli oggetti ingrediente e piatto
 			ingredienteService.save(ingrediente);
-
-			//li aggiungo al modello
 			model.addAttribute("ingrediente", ingrediente);
-
-			//se è andato tutto a buon fine
 			return "admin/ingrediente.html";
 		}
-		//se qualcosa è andato storto, torno alla form
 		return "admin/ingredienteForm.html";
 	}
 	
@@ -109,8 +100,8 @@ public class IngredienteController {
 	public String creaIngrediente(@PathVariable ("id") Long id, Model model) {
 		Piatto piatto = piattoService.findById(id);
 		Ingrediente ingrediente = new Ingrediente();
+		//non riesco a settare il piatto
 		model.addAttribute("ingrediente", ingrediente);
-		model.addAttribute("piatto", piatto);
 		return "admin/ingredienteForm.html";
 	}
 }

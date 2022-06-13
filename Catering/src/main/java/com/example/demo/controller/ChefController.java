@@ -64,9 +64,15 @@ public class ChefController {
 	public String getElencoChef(Model model) {
 		List<Chef> elencoChef = chefService.findAll();
 		model.addAttribute("elencoChef", elencoChef);
-		return "elencoChef.html";
 		
-	}
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+            return "admin/elencoChef.html";
+        }
+        return "elencoChef_default.html";
+    }
+		
 	
 	//prendo lo chef per il suo id
 	@GetMapping("/chef/{id}")
@@ -90,6 +96,23 @@ public class ChefController {
 		return "admin/chefForm.html";
 	}
 	
+	
+	//se clicco su cancella mi porta alla pagina di conferma
+	@GetMapping("/toDeleteChef/{id}")
+	public String toDeleteChef(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("chef", chefService.findById(id));
+		
+		return "admin/toDeleteChef.html";
+	}
+	
+	//confermo la cancellazione
+	@GetMapping("/deleteChef/{id}") 
+	public String deleteChef(@PathVariable("id") Long id, Model model) {
+		chefService.deleteById(id);
+		model.addAttribute("elencoBuffet", chefService.findAll());
+		
+		return "admin/elencoChef.html";
+	}
 	
 	
 }

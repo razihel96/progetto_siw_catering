@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,7 +36,7 @@ public class Ingrediente {
 	 * JPA
 	 */
 	@ManyToMany (mappedBy="ingredienti") //private List<Ingrediente> ingredienti; che si trova in Piatto
-	private Set<Piatto> piatti; //gli ingredienti possono trovarsi in più piatti
+	private List<Piatto> piatti; //gli ingredienti possono trovarsi in più piatti
 	
 
 	//GETTERS&SETTERS
@@ -73,17 +72,18 @@ public class Ingrediente {
 		this.origine = origine;
 	}
 
-	public Set<Piatto> getIngredienteInPiuPiatti() {
+	public List<Piatto> getIngredienteInPiuPiatti() {
 		return piatti;
 	}
 
-	public void setIngredienteInPiuPiatti(Set<Piatto> piatti) {
+	public void setIngredienteInPiuPiatti(List<Piatto> piatti) {
 		this.piatti = piatti;
 	}
 
 	public void addPiatto(Piatto piatto) {
 		this.piatti.add(piatto);
 	}
+
 	
 	
 

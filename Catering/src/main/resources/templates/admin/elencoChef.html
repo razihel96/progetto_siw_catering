@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	
+	<title>Elenco chef</title>
+</head>
+
+<body>
+	<div>
+		<h4>Elenco chef:</h4>
+		<ul>
+			<li th:each="chef : ${elencoChef}">
+			
+			
+			<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}" 
+			th:text="${chef.nome} + ' ' + ${chef.cognome}">NOME COGNOME</a>
+			
+			<a href ="chef.html" th:href="@{'/toDeleteChef' + '/' + ${chef.id}}"
+			th:text="cancella">cancella</a>
+		
+			
+			</li> 
+		</ul>
+	</div>
+		
+	<footer>
+		<a href="/default">Home</a>
+	</footer>
+</body>
+</html>
