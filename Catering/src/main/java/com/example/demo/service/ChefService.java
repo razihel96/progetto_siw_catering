@@ -11,19 +11,26 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.Chef;
 import com.example.demo.repository.ChefRepository;
 
+
+
 @Service
 public class ChefService {
 
 	@Autowired //carica da solo un'istanza di ChefRepository
 	private ChefRepository cr;
-	
+
 
 	//ci pensa spring boot ad aprire e chiudere la transazione (INTERROGAZIONE TRANSAZIONALE)
 	@Transactional
-	public void save(Chef chef)  {
+	public void save(Chef chef){
 		cr.save(chef);
 	}
 	
+	@Transactional
+	public Chef inserisci(Chef chef) {
+		return cr.save(chef);
+	}
+
 	@Transactional
 	public void delete(Chef chef) {
 		cr.delete(chef);
@@ -44,9 +51,8 @@ public class ChefService {
 		}
 		return elencoChef;
 	}
-	
 
-	
+
 	public void deleteById(Long id) {
 		cr.deleteById(id);
 	}
@@ -55,4 +61,5 @@ public class ChefService {
 	public boolean alreadyExists(Chef chef) {
 		return cr.existsByNomeAndCognome(chef.getNome(), chef.getCognome());
 	}
+
 }

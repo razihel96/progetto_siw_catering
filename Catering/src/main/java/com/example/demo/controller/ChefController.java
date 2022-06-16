@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -9,17 +10,23 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.controller.validator.ChefValidator;
 import com.example.demo.model.Chef;
 import com.example.demo.model.Credentials;
 import com.example.demo.service.ChefService;
 import com.example.demo.service.CredentialsService;
+import com.example.demo.upload.FileUploadUtil;
+
+
 
 @Controller
 public class ChefController {
@@ -36,16 +43,21 @@ public class ChefController {
 	
 	
 	@PostMapping("/admin/chef")
-	public String addChef(@Valid @ModelAttribute ("chef") Chef chef, BindingResult bindingResult, Model model) {
+	public String addChef(@Valid @ModelAttribute ("chef") Chef chef, @RequestParam("image") MultipartFile multipartFile, BindingResult bindingResult, Model model) throws IOException {
 		
 		//controlla se non ci sono doppioni
 		chefValidator.validate(chef, bindingResult);
 
-		
 		//se non ci sono errori
 		if(!bindingResult.hasErrors()) {
-			//salvo l'oggetto buffet
-			chefService.save(chef);
+			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+			chef.setPhotos(fileName);
+			
+			Chef salvaChef = this.chefService.inserisci(chef);
+			
+			String uploadDir = "chef-photos/" + salvaChef.getId();
+			
+			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 			
 			//lo aggiungo al modello
 			model.addAttribute("chef", chef);
@@ -59,7 +71,7 @@ public class ChefController {
 	}
 	
 	
-	//prendo l'elenco degli
+	//prendo l'elenco degli chef
 	@GetMapping("/elencoChef")
 	public String getElencoChef(Model model) {
 		List<Chef> elencoChef = chefService.findAll();
@@ -93,6 +105,7 @@ public class ChefController {
 	@GetMapping("/chefForm") 
 	public String getChefForm(Model model) {
 		model.addAttribute("chef", new Chef());
+		
 		return "admin/chefForm.html";
 	}
 	
@@ -114,5 +127,6 @@ public class ChefController {
 		return "admin/elencoChef.html";
 	}
 	
+
 	
 }

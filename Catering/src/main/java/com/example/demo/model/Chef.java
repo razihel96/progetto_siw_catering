@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -31,18 +32,55 @@ public class Chef {
 	private String nazionalita;
 	
 	
+	@Column(nullable = true, length = 64)
+	private String photos;
+	
+	
+	
+	//COSTRUTTORE VUOTO
+	public Chef() {	}
+	
+	//COSTRUTTORE
+	public Chef(Long id, String nome,String cognome,String nazionalita, @NotBlank String photos) {
+		this.id = id;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.nazionalita = nazionalita;
+		this.photos = photos;
+	}
+	
+	
+
 	/*
 	 * JPA
 	 */
-	//bidirezionale
 	@OneToMany (mappedBy = "chef", cascade = CascadeType.ALL)
 	private List<Buffet> buffetChef; //ogni chef propone più buffet 
 
+	
+	
+	
+	//IMMAGINI
+	@Transient
+    public String getPhotosImagePath() {
+        if (this.getPhotos() == null || this.getId() == null) return null;
+         
+        return "/chef-photos/" + id + "/" + photos;
+    }
 	
 	//GETTERS&SETTERS
 	public Long getId() {
 		return id;
 	}
+
+	public String getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
+	}
+
 
 	public void setId(Long id) {
 		this.id = id;

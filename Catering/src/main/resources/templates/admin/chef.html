@@ -16,6 +16,10 @@
 			<span>Nazionalità: </span>
 			<span th:text = "${chef.nazionalita}"> NAZIONALITA </span>
 			<br>
+			<span>Foto: </span>
+			<img th:src="@{${chef.photosImagePath}}" width="80" height="80" />
+			<br>
+			
 			<a th:href="@{'/chef' + '/' + ${chef.id} + '/buffetForm'}"> Inserisci Buffet </a>
 			<br>
 			<a th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>

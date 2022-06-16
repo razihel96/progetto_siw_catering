@@ -14,7 +14,10 @@
 			
 			
 			<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}" 
-			th:text="${chef.nome} + ' ' + ${chef.cognome}">NOME COGNOME</a>
+			th:text="${chef.nome} + ' ' + ${chef.cognome}">NOME COGNOME FOTO</a>
+			
+			<img th:src="@{${chef.photosImagePath}}" width="80" height="80" />
+			
 			
 			<a href ="chef.html" th:href="@{'/toDeleteChef' + '/' + ${chef.id}}"
 			th:text="cancella">cancella</a>

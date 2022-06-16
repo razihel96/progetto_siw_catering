@@ -3,10 +3,14 @@
 <head>
 	<meta charset="UTF-8" />
 	
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	
+	
 	<title>Elenco chef</title>
 </head>
 
 <body>
+
 	<div>
 		<h4>Elenco chef:</h4>
 		<ul>
@@ -15,8 +19,8 @@
 			
 			<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}" 
 			th:text="${chef.nome} + ' ' + ${chef.cognome}">NOME COGNOME</a>
-		
 			
+
 			</li> 
 		</ul>
 	</div>
