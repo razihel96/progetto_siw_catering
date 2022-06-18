@@ -21,7 +21,7 @@
 
 
 	<div id="testo_chef">
-		<h1>Tradizione e cultura nella mani sapienti dei nostri Chef</h1>
+		<h1>Tradizione e cultura nelle mani sapienti dei nostri Chef</h1>
 		<p> 
 			Una pasta artigianale dal sapore antico, trasformata in tante 
 			ricette insuperabili dagli chef più esperti e talentuosi del nostro 
@@ -34,16 +34,20 @@
 
 	<div>		
 		
-		<ul>
-			<li id="elenco" th:each="chef : ${elencoChef}">
+		<ul id="elenco">
+			<li th:each="chef : ${elencoChef}">
 			
 			
-			<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}" 
-			th:text="${chef.nome} + ' ' + ${chef.cognome}">
+				<div class="container_chef">
+					<img class="foto_chef" th:src="@{${chef.photosImagePath}}"/>
+				
+					<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}" 
+					th:text="${chef.nome} + ' ' + ${chef.cognome}">
+					
+					NOME COGNOME</a>
+				</div>
 			
-			<img th:src="@{${chef.photosImagePath}}"/>
 			
-			NOME COGNOME</a>
 
 			</li> 
 		</ul>
