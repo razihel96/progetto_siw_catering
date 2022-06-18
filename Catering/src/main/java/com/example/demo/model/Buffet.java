@@ -10,37 +10,50 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 
 
 @Entity
 public class Buffet {
-	
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id; //chiave primaria nel mapping
-	
+
 	@NotBlank
 	@Column(nullable = false)
 	private String nome;
-	
+
 	@NotBlank
 	@Column(nullable = false)
 	private String descrizione;
 
-	
+	@Column(nullable = true, length = 64)
+	private String photos;
+
+
 	/*
 	 * JPA
 	 */
 	@ManyToOne
 	private Chef chef; //i buffet vengono proposti da un solo chef
-	
+
 	@OneToMany(mappedBy= "buffet", cascade = CascadeType.ALL)
 	private List<Piatto> piattiBuffet; //ogni buffet contiene più piatti
-	
-	
-	
+
+
+
+	//IMMAGINI
+	@Transient
+	public String getPhotosImagePath() {
+		if (this.getPhotos() == null || this.getId() == null) return null;
+
+		return "/buffet-photos/" + id + "/" + photos;
+	}
+
+
 
 	//GETTERS&SETTERS
 	public Long getId() {
@@ -81,6 +94,14 @@ public class Buffet {
 
 	public void setPiattiBuffet(List<Piatto> piattiBuffet) {
 		this.piattiBuffet = piattiBuffet;
+	}
+
+	public void setPhotos(String photos) {
+		this.photos = photos;
+	}
+
+	private String getPhotos() {
+		return this.photos;
 	}
 
 }

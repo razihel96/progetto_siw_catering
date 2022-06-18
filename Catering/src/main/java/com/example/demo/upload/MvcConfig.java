@@ -14,6 +14,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         exposeDirectory("chef-photos", registry);
+        exposeDirectory("buffet-photos", registry);
         //qui ci aggiungo in coda le foto delle altre entità
     }
      

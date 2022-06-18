@@ -327,3 +327,47 @@ ul {
 
 
 
+
+/*********************/
+/*****CHEF_DETTAGLI*****/
+/*********************/
+
+#container_chef_dettagli {
+    /*border: 2px solid green;*/
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+
+#foto_chef_dettagli {
+    width: 350px;
+    height: 350px;
+}
+
+#container_chef_desc {
+    /*border: 2px solid red;*/
+    width: 350px;
+    margin: auto;
+
+    font-size: 25px;
+    color: aliceblue;
+    text-align: left;
+
+}
+
+#elenco_buffet {
+    color: aliceblue;
+}
+
+.colore {
+    color: aliceblue;
+}
+
+summary {
+    border: 2px solid yellow;
+
+    margin: 20px;
+}
+
+

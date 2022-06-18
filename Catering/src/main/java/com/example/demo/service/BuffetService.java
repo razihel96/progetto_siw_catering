@@ -29,6 +29,12 @@ public class BuffetService {
 		br.save(buffet);
 	}
 	
+	//IMMAGINI
+	@Transactional
+	public Buffet inserisci(Buffet buffet) {
+		return br.save(buffet);
+	}
+	
 	@Transactional
 	public void delete(Buffet buffet) {
 		br.delete(buffet);
@@ -70,5 +76,7 @@ public class BuffetService {
 	public void deleteById(Long id) {
 		br.deleteById(id);
 	}
+
+
 	
 }

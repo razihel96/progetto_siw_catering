@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<form th:action = "@{/buffet}" method = "post" th:object = "${buffet}">
+<form th:action = "@{/buffet}" method = "post" th:object = "${buffet}" enctype="multipart/form-data">
 
 	<div th:if="${#fields.hasGlobalErrors()}">
 		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">ERRORE</p>
@@ -17,6 +17,9 @@
 	
 	<div> Descrizione: <input type="text" th:field="*{descrizione}" /> </div>
 	<div th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></div>
+	
+	<div> Foto: <input type="file" name="image" accept="image/png, image/jpeg" required/> </div>
+	
 	
 	
 	<br>

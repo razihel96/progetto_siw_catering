@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -9,12 +10,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.controller.validator.BuffetValidator;
 import com.example.demo.model.Buffet;
@@ -23,6 +26,7 @@ import com.example.demo.model.Credentials;
 import com.example.demo.service.BuffetService;
 import com.example.demo.service.ChefService;
 import com.example.demo.service.CredentialsService;
+import com.example.demo.upload.FileUploadUtil;
 
 @Controller
 public class BuffetController {
@@ -42,7 +46,8 @@ public class BuffetController {
 	
 	
 	@PostMapping("/buffet")
-	public String addBuffet(@RequestParam ("idChef") String idChef, @Valid @ModelAttribute ("buffet") Buffet buffet, BindingResult bindingResult, Model model) {
+	public String addBuffet(@RequestParam ("idChef") String idChef, @Valid @ModelAttribute ("buffet") Buffet buffet, 
+			@RequestParam("image") MultipartFile multipartFile, BindingResult bindingResult, Model model) throws IOException {
 		
 		/*
 		 * codice ridondante ma che serve per il passaggio dei parametri
@@ -58,8 +63,19 @@ public class BuffetController {
 
 		//se non ci sono errori
 		if(!bindingResult.hasErrors()) {
+			
 			//salvo l'oggetto buffet
 			buffetService.save(buffet);
+			
+			
+			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+			buffet.setPhotos(fileName);
+			
+			Buffet salvaBuffet = this.buffetService.inserisci(buffet);
+			
+			String uploadDir = "buffet-photos/" + salvaBuffet.getId();
+			
+			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 			
 			//lo aggiungo al modello
 			model.addAttribute("buffet", buffet);

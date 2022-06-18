@@ -2,31 +2,49 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="ISO-8859-1" />
+		<link th:href="@{/css/style.css}" rel="stylesheet">
 	<title> Dettagli chef </title>
 </head>
 
-<body>
-	<h6>Menu Default</h6>
+<body class="body_index_pagina">
 
-	<div>
-		<h4> Dettagli chef </h4>
-		<div>
-		
-			<span>Nome e cognome: </span>
-			<span th:text = "${chef.nome} + ' ' + ${chef.cognome}"> NOME COGNOME </span>
-			<br>
-			<span>Nazionalità: </span>
-			<span th:text = "${chef.nazionalita}"> NAZIONALITA </span>
-			<br>
-			<br>
-			<a th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>
+	<div class="nome_index_pagina">
+		<h1>ROMA<span>3</span> CATERING</h1>
+	</div>
+
+	<div>		
+		<div id="container_chef_dettagli">
+
+			<img id="foto_chef_dettagli" th:src="@{${chef.photosImagePath}}"/>
+
+			<div id="container_chef_desc">
+				<span>Nome:</span>
+				<span th:text = "${chef.nome}"> NOME </span>
+				<br>
+				<span>Cognome:</span>
+				<span th:text = "${chef.cognome}"> COGNOME </span>
+				<br>
+				<span>Nazionalità: </span>
+				<span th:text = "${chef.nazionalita}"> NAZIONALITA </span>
+			</div>
 			
+
+			<br>
+			<br>
+			<a class="colore" th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>
+
+		
 			<br>
 			<br>
 		
 			
 		</div>
 	</div>
-	<footer><a href="/default"> Home </a></footer>
+
+
+
+	<footer  class="footer_login">
+        <a href="/"><img id="img_login" src="/images/home.png" alt=""> Home</a>
+    </footer>
 </body>
 </html>

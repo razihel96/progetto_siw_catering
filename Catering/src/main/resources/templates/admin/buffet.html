@@ -10,12 +10,15 @@
 		<h4> Dettagli buffet </h4>
 		<div>
 		
-		
+			
 			<span th:text = "${buffet.nome}"> NOME </span>
 			<br>
 			<span th:text = "${buffet.descrizione}"> DESCRIZIONE </span>
 			<br>
+			<span>Foto: </span>
+			<img th:src="@{${buffet.photosImagePath}}" width="80" height="80" />
 			<br>			
+			<br>
 		    <a th:href="@{'/buffet' + '/' + ${buffet.id} + '/piattoForm'}"> Inserisci piatto </a> 
 			<br>
 			<a th:href="@{'/buffet' + '/' + ${buffet.id} + '/elencoPiatti'}"> Visualizza piatti </a>

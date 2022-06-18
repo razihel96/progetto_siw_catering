@@ -13,8 +13,10 @@
 		<h4>Elenco buffet:</h4>
 		<ul>
 		
-		
 			<li th:each="buffet : ${elencoBuffet}">
+			
+			<img th:src="@{${buffet.photosImagePath}}" width="80" height="80" />
+			
 			
 			<a href="buffet.html" th:href="@{'/buffet' + '/' + ${buffet.id}}" 
 			th:text="${buffet.nome}">NOME</a>	
