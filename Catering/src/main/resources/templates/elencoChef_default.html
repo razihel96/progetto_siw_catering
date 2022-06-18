@@ -9,24 +9,51 @@
 	<title>Elenco chef</title>
 </head>
 
-<body>
+<body class="body_index_pagina">
 
-	<div>
-		<h4>Elenco chef:</h4>
+	<div class="nome_index_pagina">
+		<h1>ROMA<span>3</span> CATERING</h1>
+	</div>
+
+	<div id="headerfoto">
+		<h2>GLI CHEF</h2>
+	</div>
+
+
+	<div id="testo_chef">
+		<h1>Tradizione e cultura nella mani sapienti dei nostri Chef</h1>
+		<p> 
+			Una pasta artigianale dal sapore antico, trasformata in tante 
+			ricette insuperabili dagli chef più esperti e talentuosi del nostro 
+			territorio, alla costante ricerca di combinazioni originali e allo stesso 
+			tempo legati alle tradizioni e agli ingredienti della cucina nostrana.
+		</p>
+	</div>
+
+
+
+	<div>		
+		
 		<ul>
-			<li th:each="chef : ${elencoChef}">
+			<li id="elenco" th:each="chef : ${elencoChef}">
 			
 			
 			<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}" 
-			th:text="${chef.nome} + ' ' + ${chef.cognome}">NOME COGNOME</a>
+			th:text="${chef.nome} + ' ' + ${chef.cognome}">
 			
+			<img th:src="@{${chef.photosImagePath}}"/>
+			
+			NOME COGNOME</a>
 
 			</li> 
 		</ul>
 	</div>
 		
-	<footer>
-		<a href="/default">Home</a>
-	</footer>
+
+
+	<footer  class="footer_login">
+        <a href="/"><img id="img_login" src="images/home.png" alt=""> Home</a>
+    </footer>
+    
 </body>
 </html>
