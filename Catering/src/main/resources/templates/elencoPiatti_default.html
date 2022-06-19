@@ -2,15 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	
+		<link th:href="@{/css/style.css}" rel="stylesheet">
 	<title>Elenco buffet</title>
 </head>
 
-<body>
-	<h6>Menu Default</h6>
+<body class="body_index_pagina">
+
+    <div class="nome_index_pagina">
+		<h1>ROMA<span>3</span> CATERING</h1>
+	</div>
+
+    <div id="headerfoto_piatto">
+		<h2>I PIATTI</h2>
+	</div>
+
+
+    <div class="testo_pagina">
+		<h1>Piatti come non li avete mai visti</h1>
+		<p> 
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, 
+            nesciunt hic doloremque dicta quaerat voluptas, soluta laboriosam aut quis 
+            alias labore autem rerum vel assumenda inventore, pariatur itaque odio 
+            voluptatibus!
+		</p>
+	</div>
 
 	<div>
-		<h4>Elenco piatti:</h4>
 		<ul>
 			<li th:each="piatto : ${elencoPiatti}">
 			
@@ -22,8 +39,9 @@
 		</ul>
 	</div>
 		
-	<footer>
-		<a href="/default">Home</a>
-	</footer>
+	<footer  class="footer_login">
+        <a href="/default"><img id="img_login" src="/images/home2.png" alt=""> Home</a>
+    </footer>
 </body>
+
 </html>

@@ -13,11 +13,11 @@
 	</div>
 
 	<div>		
-		<div id="container_chef_dettagli">
+		<div class="container_dettagli">
 
-			<img id="foto_chef_dettagli" th:src="@{${chef.photosImagePath}}"/>
+			<img class="foto_dettagli" th:src="@{${chef.photosImagePath}}"/>
 
-			<div id="container_chef_desc">
+			<div class="container_desc">
 				<span>Nome:</span>
 				<span th:text = "${chef.nome}"> NOME </span>
 				<br>
@@ -31,7 +31,7 @@
 
 			<br>
 			<br>
-			<a class="colore" th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>
+			<a th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>
 
 		
 			<br>
@@ -44,7 +44,7 @@
 
 
 	<footer  class="footer_login">
-        <a href="/"><img id="img_login" src="/images/home.png" alt=""> Home</a>
+        <a href="/default"><img id="img_login" src="/images/home2.png" alt=""> Home</a>
     </footer>
 </body>
 </html>

@@ -2,20 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
+			<link th:href="@{/css/style.css}" rel="stylesheet">
 	<title> Dettagli buffet </title>
 </head>
 
-<body>
-	<h6>Menu Default</h6>
+<body class="body_index_pagina">
 
-	<div>
-		<h4> Dettagli buffet </h4>
-		<div>
+    <div class="nome_index_pagina">
+		<h1>ROMA<span>3</span> CATERING</h1>
+	</div>
+	
+
+	
+		<div class="container_dettagli">
 		
-		
-			<span th:text = "${buffet.nome}"> NOME </span>
-			<br>
-			<span th:text = "${buffet.descrizione}"> DESCRIZIONE </span>
+            <img class="foto_dettagli" th:src="@{${buffet.photosImagePath}}" width="80" height="80"/>
+            <div class="container_desc b">
+                <span th:text = "${buffet.nome}"> NOME </span>
+                <br>
+                <span id="desc" th:text = "${buffet.descrizione}"> DESCRIZIONE </span>
+            </div>
+			
 			<br>
 			<br>			
 			
@@ -26,7 +33,10 @@
 			
 			
 		</div>
-	</div>
-	<footer><a href="/default"> Home </a></footer>
+	
+        <footer  class="footer_login">
+            <a href="/default"><img id="img_login" src="/images/home2.png" alt=""> Home</a>
+        </footer>
 </body>
+
 </html>
