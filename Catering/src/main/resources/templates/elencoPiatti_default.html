@@ -33,11 +33,19 @@
 			
 			<a href="piatto.html" th:href="@{'/piatto' + '/' + ${piatto.id}}" 
 			th:text="${piatto.nome}">NOME</a>
+			
+			<div> 
+				<li th:each="ingrediente : ${elencoIngredienti}
+				<a href="ingrediente.html" th:href="@{'/ingrediente' + '/' + ${ingrediente.id}}" 
+				th:text="${ingrediente.nome}">NOME</a>
+			</div>
 
 			</li> 
 			
 		</ul>
 	</div>
+	
+	
 		
 	<footer  class="footer_login">
         <a href="/default"><img id="img_login" src="/images/home2.png" alt=""> Home</a>

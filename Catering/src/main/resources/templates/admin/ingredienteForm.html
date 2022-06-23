@@ -7,12 +7,11 @@
 
 <body>
 
-<div th:text=*{piatto.nome}> mi ritorna il nome del piatto </div>
-
 
 <form th:action = "@{/admin/ingrediente}" method = "post" th:object = "${ingrediente}">
 
-	<div th:if="${#fields.hasGlobalErrors()}">
+
+        <div th:if="${#fields.hasGlobalErrors()}">
 		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">ERRORE</p>
 	</div>
 	  
@@ -24,7 +23,10 @@
 	
 	<div> Origine: <input type="text" th:field="*{origine}" /> </div>
 	<div th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></div>
+		
 	
+	
+	<input type="hidden" name="idPiatto" th:value=*{piatto.id}>
 	
 	<div> <button type="submit"> Conferma </button> </div>
 </form>	

@@ -18,10 +18,13 @@
 			
 			<img th:src="@{${chef.photosImagePath}}" width="80" height="80" />
 			
-			
+			<span> --- </span>
 			<a href ="chef.html" th:href="@{'/toDeleteChef' + '/' + ${chef.id}}"
-			th:text="cancella">cancella</a>
-		
+			th:text="cancella chef">cancella</a>
+			<span> --- </span>
+			<a th:href="@{'/chef' + '/' + ${chef.id} + '/buffetForm'}"> Inserisci Buffet </a>
+			<span> --- </span>
+			<a th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>
 			
 			</li> 
 		</ul>

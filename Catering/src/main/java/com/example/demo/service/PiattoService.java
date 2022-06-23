@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Buffet;
-import com.example.demo.model.Chef;
 import com.example.demo.model.Ingrediente;
 import com.example.demo.model.Piatto;
 import com.example.demo.repository.PiattoRepository;
@@ -22,9 +21,15 @@ public class PiattoService {
 	
 	
 	//ci pensa spring boot ad aprire e chiudere la transazione (INTERROGAZIONE TRANSAZIONALE)
+//	@Transactional
+//	public void save(Piatto piatto)  {
+//		pr.save(piatto);
+//	}
+	
+	
 	@Transactional
-	public void save(Piatto piatto)  {
-		pr.save(piatto);
+	public Piatto save(Piatto piatto) {
+		return pr.save(piatto);
 	}
 	
 	@Transactional
@@ -72,7 +77,25 @@ public class PiattoService {
 		return elencoPiatti;
 	}
 	
+	
+	
+	
+	
+	
+	public List<Piatto> findAll(Long id) {
+		List<Piatto> elencoPiatti = new ArrayList<>();
+		for(Piatto b : pr.findAll()) {
+			elencoPiatti.add(b);
+		}
+		return elencoPiatti;
+	}
+	
 
+	
+	
+	
+	
+	
 	//verifica se un piatto esiste già
 	public boolean alreadyExists(Piatto piatto) {
 		return pr.existsByNome(piatto.getNome());

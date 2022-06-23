@@ -46,11 +46,13 @@ public class BuffetController {
 	
 	
 	@PostMapping("/buffet")
-	public String addBuffet(@RequestParam ("idChef") String idChef, @Valid @ModelAttribute ("buffet") Buffet buffet, 
+	public String addBuffet(@Valid @ModelAttribute ("buffet") Buffet buffet, @RequestParam("idChef") String idChef,
 			@RequestParam("image") MultipartFile multipartFile, BindingResult bindingResult, Model model) throws IOException {
 		
 		/*
 		 * codice ridondante ma che serve per il passaggio dei parametri
+		 * perché gli devo passare l'id dello chef per aggiungere il buffet 
+		 * a questo specifico chef
 		 */
 		Long id = Long.valueOf(idChef);
 		Chef chef = chefService.findById(id);
@@ -63,23 +65,20 @@ public class BuffetController {
 
 		//se non ci sono errori
 		if(!bindingResult.hasErrors()) {
-			
+
 			//salvo l'oggetto buffet
 			buffetService.save(buffet);
-			
-			
+		
+			//upload delle immagini
 			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 			buffet.setPhotos(fileName);
-			
 			Buffet salvaBuffet = this.buffetService.inserisci(buffet);
-			
 			String uploadDir = "buffet-photos/" + salvaBuffet.getId();
-			
 			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 			
 			//lo aggiungo al modello
 			model.addAttribute("buffet", buffet);
-			
+						
 			//se è andato tutto a buon fine
 			return "admin/buffet.html";
 		}

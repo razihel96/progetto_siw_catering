@@ -1,14 +1,11 @@
 package com.example.demo.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Ingrediente {
@@ -17,16 +14,15 @@ public class Ingrediente {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id; //chiave primaria nel mapping
 	
-	@NotBlank
-	@Column(nullable = false)
+	
+	@Column(nullable = true)
 	private String nome;
 	
-	@NotBlank
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String descrizione;
 	
-	@NotBlank
-	@Column(nullable = false)
+
+	@Column(nullable = true)
 	private String origine;
 	
 	
@@ -35,10 +31,25 @@ public class Ingrediente {
 	/*
 	 * JPA
 	 */
-	@ManyToMany (mappedBy="ingredienti") //private List<Ingrediente> ingredienti; che si trova in Piatto
-	private List<Piatto> piatti; //gli ingredienti possono trovarsi in più piatti
+//	@ManyToMany (mappedBy="ingredienti") //private List<Ingrediente> ingredienti; che si trova in Piatto
+//	public List<Piatto> piatti; //gli ingredienti possono trovarsi in più piatti
+	
+	@ManyToOne
+	private Piatto piatto; //gli ingredienti si trovano in un solo piatto
+	
+	
+	public Ingrediente() {
+	}
 	
 
+	public Ingrediente(String nome, String descrizione, String origine) {
+		this.nome = nome;
+		this.descrizione = descrizione;
+		this.origine = origine;
+	}
+
+	
+	
 	//GETTERS&SETTERS
 	public Long getId() {
 		return id;
@@ -72,17 +83,35 @@ public class Ingrediente {
 		this.origine = origine;
 	}
 
-	public List<Piatto> getIngredienteInPiuPiatti() {
-		return piatti;
+
+	public Piatto getPiatto() {
+		return piatto;
 	}
 
-	public void setIngredienteInPiuPiatti(List<Piatto> piatti) {
-		this.piatti = piatti;
-	}
 
-	public void addPiatto(Piatto piatto) {
-		this.piatti.add(piatto);
+	public void setPiatto(Piatto piatto) {
+		this.piatto = piatto;
 	}
+	
+	
+	
+
+//	public List<Piatto> getIngredienteInPiuPiatti() {
+//		return piatti;
+//	}
+//
+//	public void setIngredienteInPiuPiatti(List<Piatto> piatti) {
+//		this.piatti = piatti;
+//	}
+//
+//	public void addPiatto(Piatto piatto) {
+//		this.piatti.add(piatto);
+//	}
+//
+//
+//	public void addPiatti(List<Piatto> piatti) {
+//		this.piatti = piatti;
+//	}
 
 	
 	

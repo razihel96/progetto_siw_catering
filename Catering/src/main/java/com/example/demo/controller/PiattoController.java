@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.demo.controller.validator.PiattoValidator;
 import com.example.demo.model.Buffet;
 import com.example.demo.model.Credentials;
+import com.example.demo.model.Ingrediente;
 import com.example.demo.model.Piatto;
 import com.example.demo.service.BuffetService;
 import com.example.demo.service.CredentialsService;
+import com.example.demo.service.IngredienteService;
 import com.example.demo.service.PiattoService;
 
 @Controller
@@ -39,6 +41,9 @@ public class PiattoController {
 	
 	@Autowired
 	private BuffetService buffetService;
+	
+	@Autowired
+	private IngredienteService ingredienteService;
 	
 	@Autowired 
 	private CredentialsService credentialsService;
@@ -98,6 +103,13 @@ public class PiattoController {
 		return "admin/piatto.html";
 	}
 
+	//prendo il piatto per il suo id
+	@GetMapping("/ingrediente/{id}")
+	public String getPiattoIngrediente(@PathVariable ("id") Long id, Model model) {
+		Ingrediente ingrediente = ingredienteService.findById(id);
+		model.addAttribute("ingrediente", ingrediente);
+		return "admin/ingrediente.html";
+	}
 	
 	
 

@@ -24,12 +24,14 @@
 	
 	<br>
 	<br>
+	
+	<!-- verifico se sto inserendo il buffet corrente allo chef giusto -->
 	<div th:text=*{chef.nome}> mi ritorna il nome dello chef </div>
 	
-		
 	
 	<div> 
-		<input type="hidden" name="idChef" th:value=*{chef.id}>
+		<!-- per farmi ritornare il nome dello chef devo passargli il suo id -->
+		<input type="hidden" name="idChef" th:value=*{chef.id}> 
 		<button type="submit"> Conferma </button> 
 	</div>
 </form>	

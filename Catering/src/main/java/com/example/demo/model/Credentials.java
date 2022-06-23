@@ -30,7 +30,19 @@ public class Credentials {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
+	
+	
+	
+	public Credentials() {
+	}
 
+	public Credentials(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
+
+	
+	
 	public Long getId() {
 		return id;
 	}

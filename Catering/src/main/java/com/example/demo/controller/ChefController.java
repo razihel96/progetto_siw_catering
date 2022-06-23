@@ -43,7 +43,8 @@ public class ChefController {
 	
 	
 	@PostMapping("/admin/chef")
-	public String addChef(@Valid @ModelAttribute ("chef") Chef chef, @RequestParam("image") MultipartFile multipartFile, BindingResult bindingResult, Model model) throws IOException {
+	public String addChef(@Valid @ModelAttribute ("chef") Chef chef, 
+			@RequestParam("image") MultipartFile multipartFile, BindingResult bindingResult, Model model) throws IOException {
 		
 		//controlla se non ci sono doppioni
 		chefValidator.validate(chef, bindingResult);

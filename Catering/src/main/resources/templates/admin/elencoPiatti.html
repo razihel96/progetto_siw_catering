@@ -16,7 +16,12 @@
 			th:text="${piatto.nome}">NOME</a>
 			<span> --- </span>
 			<a href ="buffet.html" th:href="@{'/toDeletePiatto' + '/' + ${piatto.id}}"
-			th:text="cancella">cancella</a>
+			th:text="cancella">cancella piatto</a>
+			<span> --- </span>
+			<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}"> Visualizza ingredienti </a>
+			<span> --- </span>
+			<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/ingredienteForm'}"> Inserisci ingrediente </a> 
+			 
 			
 			</li> 
 			

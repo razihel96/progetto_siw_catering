@@ -46,7 +46,7 @@ public class IngredienteService {
 	 */
 	public List<Ingrediente> getByPiatto(Piatto piatto) {
 		List<Ingrediente> ingredientiPerPiatto = new ArrayList<>();
-		Iterable<Ingrediente> i = ir.findByPiatti(piatto);
+		Iterable<Ingrediente> i = ir.findByPiatto(piatto);
 		for(Ingrediente ing : i) {
 			ingredientiPerPiatto.add(ing);
 		}

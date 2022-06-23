@@ -8,10 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -19,7 +17,7 @@ public class Piatto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id; //chiave primaria nel mapping
+	public Long id; //chiave primaria nel mapping
 	
 	@NotBlank
 	@Column(nullable = false)
@@ -36,18 +34,33 @@ public class Piatto {
 	@ManyToOne
 	private Buffet buffet; //un piatto si trova in un solo buffet
 	
-	@ManyToMany (cascade = CascadeType.PERSIST)
-	@JoinTable(
-			name = "piatto_ingrediente",
-			joinColumns = @JoinColumn(name = "piatto_id"),
-			inverseJoinColumns = @JoinColumn(name = "ingrediente_id")
-			)
+//	@ManyToMany (cascade = CascadeType.PERSIST)
+//	@JoinTable(
+//			name = "piatto_ingrediente",
+//			joinColumns = @JoinColumn(name = "piatto_id"),
+//			inverseJoinColumns = @JoinColumn(name = "ingrediente_id")
+//			)
 	
+	@OneToMany (mappedBy = "piatto", cascade = CascadeType.ALL)
 	private List<Ingrediente> ingredienti; //un piatto può avere più ingredienti
 	
 	
 
 	
+	public Piatto() {
+	}
+	
+	
+	public Piatto(@NotBlank String nome,
+			List<Ingrediente> ingredienti) {
+		this.nome = nome;
+		this.ingredienti = ingredienti;
+	}
+	
+	
+	
+	
+
 	//GETTERS&SETTERS
 	public Long getId() {
 		return id;

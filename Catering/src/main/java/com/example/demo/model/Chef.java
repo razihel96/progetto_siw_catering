@@ -117,6 +117,10 @@ public class Chef {
 	public void setBuffetChef(List<Buffet> buffetChef) {
 		this.buffetChef = buffetChef;
 	}
+
+	public void addBuffet(Buffet buffet) {
+		this.buffetChef.add(buffet);
+	}
 	
 	
 	

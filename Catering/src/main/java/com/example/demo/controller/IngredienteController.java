@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -15,8 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.controller.validator.IngredienteValidator;
 import com.example.demo.model.Credentials;
 import com.example.demo.model.Ingrediente;
 import com.example.demo.model.Piatto;
@@ -37,24 +36,36 @@ public class IngredienteController {
 	@Autowired
 	private CredentialsService credentialsService;
 	
-	@Autowired
-	private IngredienteValidator ingredienteValidator;
 	
 
 	@PostMapping("/admin/ingrediente")
-	public String addIngrediente(@Valid @ModelAttribute ("ingrediente") Ingrediente ingrediente,
+	public String addIngrediente(@RequestParam ("idPiatto") String idPiatto, @Valid @ModelAttribute ("ingrediente") Ingrediente ingrediente, 
 			BindingResult bindingResult, Model model) {
 		
-		ingredienteValidator.validate(ingrediente, bindingResult);
+		
+		Long id = Long.valueOf(idPiatto);
+		Piatto piatto = piattoService.findById(id);
+		ingrediente.setPiatto(piatto);
+		
+		
+//		ingredienteValidator.validate(ingrediente, bindingResult);
 
 
 		if(!bindingResult.hasErrors()) {
+			
 			ingredienteService.save(ingrediente);
+			
 			model.addAttribute("ingrediente", ingrediente);
+			
+
 			return "admin/ingrediente.html";
 		}
 		return "admin/ingredienteForm.html";
 	}
+	
+	
+	
+	
 	
 	
 	//prendo l'elenco degli ingredienti tramite l'id del piatto
@@ -75,20 +86,33 @@ public class IngredienteController {
 	
 	
 	//prendo l'ingrediente per il suo id
-	@GetMapping("/ingrediente/{id}")
-	public String getIngrediente(@PathVariable ("id") Long id, Model model) {
-		Ingrediente ingrediente = ingredienteService.findById(id);
-		model.addAttribute("ingrediente", ingrediente);
-		
-		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/ingrediente.html";
-        }
-        return "ingrediente_default.html";
-    }
+//	@GetMapping("/ingrediente/{id}")
+//	public String getIngrediente(@PathVariable ("id") Long id, Model model) {
+//		Ingrediente ingrediente = ingredienteService.findById(id);
+//		model.addAttribute("ingrediente", ingrediente);
+//		
+//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+//    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+//            return "admin/ingrediente.html";
+//        }
+//        return "ingrediente_default.html";
+//    }
 
-	
+//	@GetMapping("/ingrediente/{id}")
+//	public String getIngrediente2(@PathVariable ("id") Long id, Model model) {
+//		
+//		Ingrediente ingrediente = ingredienteService.findById(id);
+//		model.addAttribute("ingrediente", ingrediente);
+//		
+//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+//    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+//            return "admin/ingrediente.html";
+//        }
+//        return "ingrediente_default.html";
+//    }
+//	
 	
 
 	//mi ritorna la form...
@@ -100,8 +124,25 @@ public class IngredienteController {
 	public String creaIngrediente(@PathVariable ("id") Long id, Model model) {
 		Piatto piatto = piattoService.findById(id);
 		Ingrediente ingrediente = new Ingrediente();
+		ingrediente.setPiatto(piatto);
 		//non riesco a settare il piatto
 		model.addAttribute("ingrediente", ingrediente);
+		
 		return "admin/ingredienteForm.html";
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
