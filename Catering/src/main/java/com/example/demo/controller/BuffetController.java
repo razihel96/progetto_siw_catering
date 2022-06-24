@@ -6,8 +6,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -22,11 +20,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.controller.validator.BuffetValidator;
 import com.example.demo.model.Buffet;
 import com.example.demo.model.Chef;
-import com.example.demo.model.Credentials;
 import com.example.demo.service.BuffetService;
 import com.example.demo.service.ChefService;
-import com.example.demo.service.CredentialsService;
 import com.example.demo.upload.FileUploadUtil;
+
+
 
 @Controller
 public class BuffetController {
@@ -40,9 +38,7 @@ public class BuffetController {
 	@Autowired
 	private ChefService chefService;
 	
-	@Autowired
-	private CredentialsService credentialsService;
-
+	
 	
 	
 	@PostMapping("/buffet")
@@ -78,13 +74,14 @@ public class BuffetController {
 			
 			//lo aggiungo al modello
 			model.addAttribute("buffet", buffet);
-						
+			model.addAttribute("elencoBuffet", buffetService.findAll());
+			model.addAttribute("role", buffetService.getCredentialsService().getRoleAuthenticated());
+			
 			//se è andato tutto a buon fine
-			return "buffet.html";
+			return "elencoBuffet.html";
 		}
 		//se qualcosa è andato storto, torno alla form
 		return "buffetForm.html";
-		
 	}
 	
 	
@@ -96,11 +93,7 @@ public class BuffetController {
 		List<Buffet> elencoBuffet = buffetService.getByChef(chef);
 		model.addAttribute("elencoBuffet", elencoBuffet);
 		model.addAttribute("role", buffetService.getCredentialsService().getRoleAuthenticated());
-//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-//    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-//            return "admin/elencoBuffet.html";
-//        }
+
         return "elencoBuffet.html";
     }
 	
@@ -115,11 +108,7 @@ public class BuffetController {
 		Buffet buffet = buffetService.findById(id);
 		model.addAttribute("buffet", buffet);
 		
-//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-//    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-//            return "admin/buffet.html";
-//        }
+
         return "buffet.html";
     }
 
@@ -131,14 +120,25 @@ public class BuffetController {
 	 * al buffet collego il suo chef prendendo l'id di quest'ultimo
 	 */
 	@GetMapping("/admin/chef/{id}/buffetForm") 
-	public String creaBuffet(@PathVariable ("id") Long id, Model model) {
+	public String creaBuffetId(@PathVariable ("id") Long id, Model model) {
 		Chef chef = chefService.findById(id);
 		Buffet buffet = new Buffet();
 		buffet.setChef(chef);
 		model.addAttribute("buffet", buffet);
+		model.addAttribute("elencoBuffet", buffetService.findAll());
+		
 		return "buffetForm.html";
 	}
 	
+	
+//	@GetMapping("/admin/chef/buffetForm") 
+//	public String creaBuffet(Model model) {
+//		Buffet buffet = new Buffet();
+//		model.addAttribute("buffet", buffet);
+//		model.addAttribute("elencoBuffet", buffetService.findAll());
+//		
+//		return "buffetForm.html";
+//	}
 	
 	//se clicco su cancella mi porta alla pagina di conferma
 	@GetMapping("/admin/toDeleteBuffet/{id}")
@@ -153,6 +153,7 @@ public class BuffetController {
 	public String deleteBuffet(@PathVariable("id") Long id, Model model) {
 		buffetService.deleteById(id);
 		model.addAttribute("elencoBuffet", buffetService.findAll());
+		model.addAttribute("role", buffetService.getCredentialsService().getRoleAuthenticated());
 		
 		return "elencoBuffet.html";
 	}

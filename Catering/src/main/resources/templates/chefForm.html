@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<form th:action="@{/admin/chef}" method="post" th:object = "${chef}" enctype="multipart/form-data">
+<form th:action="@{/chef}" method="post" th:object = "${chef}" enctype="multipart/form-data">
 
 	<div th:if="${#fields.hasGlobalErrors()}">
 		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">ERRORE</p>

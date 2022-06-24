@@ -6,7 +6,23 @@
 </head>
 
 <body>
-<form th:action="@{/admin/piatto}" method="post" th:object="${piatto}">
+
+
+			<span>Piatti già inseriti: </span>
+			<li id="griglia" th:each="piatto : ${elencoPiatti}">
+				
+				<span th:text="${piatto.nome}"> NOME </span>
+			
+			</li> 
+			
+			<br>
+			<br>
+
+
+
+
+
+<form th:action="@{/piatto}" method="post" th:object="${piatto}">
 
 	<div th:if="${#fields.hasGlobalErrors()}">
 		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">ERRORE</p>

@@ -13,7 +13,7 @@
 			<div>Nome del piatto: <span th:text = "${piatto.nome}"> NOME </span> </div>
 			<div>Descrizione: <span th:text = "${piatto.descrizione}"> DESCRIZIONE </div>
 			<br>
-			<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/ingredienteForm'}"> Inserisci ingrediente </a> 
+			
 			<br>
 			<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}"> Visualizza ingredienti </a>
 			

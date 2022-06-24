@@ -19,6 +19,9 @@ public class PiattoService {
 	@Autowired
 	private PiattoRepository pr;
 	
+	@Autowired
+	private CredentialsService credentialsService;
+	
 	
 	//ci pensa spring boot ad aprire e chiudere la transazione (INTERROGAZIONE TRANSAZIONALE)
 //	@Transactional
@@ -104,6 +107,11 @@ public class PiattoService {
 	//cancella piatto da id
 	public void deleteById(Long id) {
 		pr.deleteById(id);
+	}
+	
+	@Transactional
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
 	}
 
 

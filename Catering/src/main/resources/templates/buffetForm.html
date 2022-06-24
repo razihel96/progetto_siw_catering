@@ -6,7 +6,27 @@
 </head>
 
 <body>
+			
+
+
 <form th:action = "@{/buffet}" method = "post" th:object = "${buffet}" enctype="multipart/form-data">
+
+
+			<span>Buffet già inseriti</span>
+			<li id="griglia" th:each="buffet : ${elencoBuffet}">
+				
+				<span th:text="${buffet.nome}"> NOME </span>
+							
+			</li> 
+			
+			<br>
+			<br>
+
+
+	 <!-- verifico se sto inserendo il buffet corrente allo chef giusto -->
+	 <div th:text="'Sto inserendo il buffet in: ' + *{chef.nome} + ' ' + *{chef.cognome}"> mi ritorna il nome dello chef </div>
+
+
 
 	<div th:if="${#fields.hasGlobalErrors()}">
 		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">ERRORE</p>
@@ -24,9 +44,6 @@
 	
 	<br>
 	<br>
-	
-	<!-- verifico se sto inserendo il buffet corrente allo chef giusto -->
-	<div th:text=*{chef.nome}> mi ritorna il nome dello chef </div>
 	
 	
 	<div> 

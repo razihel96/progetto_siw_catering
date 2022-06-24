@@ -19,6 +19,9 @@ public class IngredienteService {
 	@Autowired
 	private IngredienteRepository ir;
 	
+	@Autowired
+	private CredentialsService credentialsService;
+	
 	
 	//ci pensa spring boot ad aprire e chiudere la transazione (INTERROGAZIONE TRANSAZIONALE)
 	@Transactional
@@ -75,4 +78,8 @@ public class IngredienteService {
 		return ir.existsByNome(ingrediente.getNome());
 	}
 
+	@Transactional
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
+	}
 }

@@ -2,34 +2,91 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
+	<link th:href="@{/css/style.css}" rel="stylesheet">
 	
-	<title>Elenco buffet</title>
+	<title>Admin: Elenco piatti</title>
 </head>
 
-<body>
+<body class="body_index_pagina">
+
+	<div class="nome_index_pagina">
+		<h1>ROMA<span>3</span> CATERING</h1>
+	</div>
+
+ 	<div id="headerfoto_piatto">
+		<h2>I PIATTI</h2>
+	</div>
+
+
+ 	<div class="testo_pagina">
+		<h1>Piatti come non li avete mai visti</h1>
+		<p> 
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, 
+            nesciunt hic doloremque dicta quaerat voluptas, soluta laboriosam aut quis 
+            alias labore autem rerum vel assumenda inventore, pariatur itaque odio 
+            voluptatibus!
+		</p>
+	</div>
+
+
+
+
+
 	<div>
-		<h4>Elenco piatti:</h4>
-		<ul>
-			<li th:each="piatto : ${elencoPiatti}">
+			<div th:if="${role}=='ADMIN'">
+						
 			
-			<a href="piatto.html" th:href="@{'/piatto' + '/' + ${piatto.id}}" 
-			th:text="${piatto.nome}">NOME</a>
-			<span> --- </span>
-			<a href ="buffet.html" th:href="@{'/toDeletePiatto' + '/' + ${piatto.id}}"
-			th:text="cancella">cancella piatto</a>
-			<span> --- </span>
-			<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}"> Visualizza ingredienti </a>
-			<span> --- </span>
-			<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/ingredienteForm'}"> Inserisci ingrediente </a> 
-			 
-			
-			</li> 
-			
-		</ul>
+				<ul>
+					<li id=griglia th:each="piatto : ${elencoPiatti}">
+								
+					
+					<a href="piatto.html" th:href="@{'/piatto' + '/' + ${piatto.id}}" 
+					th:text="${piatto.nome}">NOME</a>
+
+					<a href ="buffet.html" th:href="@{'/admin/toDeletePiatto' + '/' + ${piatto.id}}"
+					th:text="cancella">cancella piatto</a>
+
+					<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}"> Visualizza ingredienti </a>
+
+					<a th:href="@{'/admin/piatto' + '/' + ${piatto.id} + '/ingredienteForm'}"> Inserisci ingrediente </a> 
+					 
+					
+					</li> 
+					
+				</ul>
+			</div>
+		
+		
+		
+			<div th:unless="${role}=='ADMIN'">
+		
+				<ul>
+					<li id=griglia th:each="piatto : ${elencoPiatti}">
+								
+					
+					<a href="piatto.html" th:href="@{'/piatto' + '/' + ${piatto.id}}" 
+					th:text="${piatto.nome}">NOME</a>
+					
+					
+					<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}"> Visualizza ingredienti </a>
+					
+					 
+					
+					</li> 
+					
+				</ul>
+			</div>
+		
 	</div>
 		
-	<footer>
-		<a href="/default">Home</a>
-	</footer>
+
+		
+	<footer  class="footer_login">
+        <a href="/default"><img id="img_login" src="images/home2.png" alt=""> Home</a>
+    </footer>
+    
+    <div>
+		<a class="a_index" th:href="@{/logout}">Logout</a>
+	</div>
 </body>
 </html>

@@ -7,8 +7,18 @@
 
 <body>
 
+			<span>Ingredienti già inseriti</span>
+			<li id="griglia" th:each="ingrediente : ${elencoIngredienti}">
+				
+				<span th:text="${ingrediente.nome}"> NOME </span>
+			
+			</li> 
+			
+			<br>
+			<br>
 
-<form th:action = "@{/admin/ingrediente}" method = "post" th:object = "${ingrediente}">
+
+<form th:action = "@{/ingrediente}" method = "post" th:object = "${ingrediente}">
 
 
         <div th:if="${#fields.hasGlobalErrors()}">
@@ -24,6 +34,9 @@
 	<div> Origine: <input type="text" th:field="*{origine}" /> </div>
 	<div th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></div>
 		
+	
+	
+	<div th:text=*{piatto.nome}> mi ritorna il nome del piatto</div>
 	
 	
 	<input type="hidden" name="idPiatto" th:value=*{piatto.id}>

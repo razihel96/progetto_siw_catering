@@ -14,6 +14,7 @@ import com.example.demo.controller.validator.CredentialsValidator;
 import com.example.demo.controller.validator.UserValidator;
 import com.example.demo.model.Credentials;
 import com.example.demo.model.User;
+import com.example.demo.service.ChefService;
 import com.example.demo.service.CredentialsService;
 
 
@@ -28,6 +29,12 @@ public class AuthenticationController {
 	
 	@Autowired
 	private CredentialsValidator credentialsValidator;
+	
+	@Autowired
+	private ChefService chefService;
+	
+	
+	
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET) 
 	public String showRegisterForm (Model model) {
@@ -46,15 +53,22 @@ public class AuthenticationController {
 		return "index";
 	}
 	
+	
+	/*
+	 * Dopo il login accedo direttamente all'elencoChef (ADMIN)
+	 */
     @RequestMapping(value = "/default", method = RequestMethod.GET)
     public String defaultAfterLogin(Model model) {
         
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+    	model.addAttribute("elencoChef", chefService.findAll());
+    	model.addAttribute("role", chefService.getCredentialsService().getRoleAuthenticated());
+    	
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/home";
+            return "elencoChef";
         }
-        return "home_default";
+        return "elencoChef";
     }
 	
     @RequestMapping(value = { "/register" }, method = RequestMethod.POST)

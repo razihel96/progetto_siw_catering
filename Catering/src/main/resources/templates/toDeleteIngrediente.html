@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1" />
+	<title>Conferma Cancellazione</title>
+</head>
+
+<body>
+	<div>
+		<h4>Ingrediente da cancellare:</h4>
+		<div>
+			<span th:text = "${ingredinte.nome}"> NOME </span>
+			<span th:text = "${ingrediente.descrizione}"> DESCRIZIONE </span>
+			<span th:text = "${ingredinte.origine}"> ORIGINE </span>
+		
+		</div>
+		
+		<div>
+			<a href ="ingrediente.html" th:href="@{'/admin/deleteIngrediente' + '/' + ${ingrediente.id}}"
+			th:text="CONFERMA">CONFERMA CANCELLAZIONE</a>
+		</div>	
+	</div>
+		
+</body>
+</html>
