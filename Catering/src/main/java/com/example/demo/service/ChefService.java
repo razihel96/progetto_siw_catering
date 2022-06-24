@@ -18,6 +18,9 @@ public class ChefService {
 
 	@Autowired //carica da solo un'istanza di ChefRepository
 	private ChefRepository cr;
+	
+	@Autowired
+	private CredentialsService credentialsService;
 
 
 	//ci pensa spring boot ad aprire e chiudere la transazione (INTERROGAZIONE TRANSAZIONALE)
@@ -60,6 +63,11 @@ public class ChefService {
 
 	public boolean alreadyExists(Chef chef) {
 		return cr.existsByNomeAndCognome(chef.getNome(), chef.getCognome());
+	}
+	
+	@Transactional
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
 	}
 
 }

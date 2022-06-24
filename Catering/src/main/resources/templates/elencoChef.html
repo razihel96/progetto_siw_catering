@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	
+	<title>Elenco chef</title>
+</head>
+
+<body>
+
+
+
+<body class="body_index_pagina">
+
+	<div class="nome_index_pagina">
+		<h1>ROMA<span>3</span> CATERING</h1>
+	</div>
+
+	<div id="headerfoto">
+		<h2>GLI CHEF</h2>
+	</div>
+
+
+	<div class="testo_pagina">
+		<h1>Tradizione e cultura nelle mani sapienti dei nostri Chef</h1>
+		<p> 
+			Una pasta artigianale dal sapore antico, trasformata in tante 
+			ricette insuperabili dagli chef più esperti e talentuosi del nostro 
+			territorio, alla costante ricerca di combinazioni originali e allo stesso 
+			tempo legati alle tradizioni e agli ingredienti della cucina nostrana.
+		</p>
+	</div>
+
+
+
+
+
+
+
+	<div>
+		<div th:if="${role}=='ADMIN'">
+			<ul id="elenco">
+			
+				<li th:each="chef : ${elencoChef}">
+				
+				<div class="container_chef">
+					<img class="foto_chef" th:src="@{${chef.photosImagePath}}"/>
+					
+					<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}" 
+					th:text="${chef.nome} + ' ' + ${chef.cognome}">NOME COGNOME FOTO</a>
+					
+					<span> --- </span>
+					<a href ="chef.html" th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}"
+					th:text="cancella_chef">cancella</a>
+					<span> --- </span>
+					<a th:href="@{'/admin/chef' + '/' + ${chef.id} + '/buffetForm'}"> Inserisci Buffet </a>
+					<span> --- </span>
+					<a th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>
+				
+				
+				
+					</li> 
+				</ul>
+			</div>
+			
+			
+			
+			
+			
+			<div th:unless="${role}=='ADMIN'">
+				<ul id="elenco">
+					<li th:each="chef : ${elencoChef}">
+			
+					<div class="container_chef">
+			
+					<img class="foto_chef" th:src="@{${chef.photosImagePath}}"/>
+			
+					<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}" 
+					th:text="${chef.nome} + ' ' + ${chef.cognome}">NOME COGNOME FOTO</a>
+					
+				
+					<a th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>
+				
+					</li>
+				</ul>
+			</div>
+			
+			
+		
+	</div>
+		
+	<footer  class="footer_login">
+        <a href="/default"><img id="img_login" src="images/home2.png" alt=""> Home</a>
+    </footer>
+</body>
+</html>

@@ -20,7 +20,8 @@ public class BuffetService {
 	@Autowired //carica da solo un'istanza di BuffetRepository
 	private BuffetRepository br;
 
-	
+	@Autowired
+	private CredentialsService credentialsService;
 	
 	
 	//ci pensa spring boot ad aprire e chiudere la transazione (INTERROGAZIONE TRANSAZIONALE)
@@ -43,7 +44,7 @@ public class BuffetService {
 	//cerco un buffet dandogli un id
 	//INTERROGAZIONE NON TRANSAZIONALE
 	public Buffet findById(Long id) {
-		return br.findById(id).get(); //con .get() mi ritorna l'oggetto che ha preso
+		return br.findById(id).get(); //con .get() mi ritorna l'oggetto Buffet
 	}
 
 	//mi ritorna la lista dei buffet
@@ -61,7 +62,7 @@ public class BuffetService {
 	 */
 	public List<Buffet> getByChef(Chef chef) {
 		List<Buffet> buffetPerChef = new ArrayList<>();
-		Iterable<Buffet> i = br.findByChef(chef);
+		List<Buffet> i = br.findByChef(chef);
 		for(Buffet b : i) {
 			buffetPerChef.add(b);
 		}
@@ -77,6 +78,10 @@ public class BuffetService {
 		br.deleteById(id);
 	}
 
+	@Transactional
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
+	}
 
 	
 }

@@ -64,10 +64,10 @@ public class ChefController {
 			model.addAttribute("chef", chef);
 			
 			//se è andato tutto a buon fine
-			return "admin/chef.html";
+			return "chef.html";
 		}
 		//se qualcosa è andato storto, torno alla form
-		return "admin/chefForm.html";
+		return "chefForm.html";
 		
 	}
 	
@@ -77,13 +77,30 @@ public class ChefController {
 	public String getElencoChef(Model model) {
 		List<Chef> elencoChef = chefService.findAll();
 		model.addAttribute("elencoChef", elencoChef);
+		model.addAttribute("role", this.chefService.getCredentialsService().getRoleAuthenticated());
 		
-		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/elencoChef.html";
-        }
-        return "elencoChef_default.html";
+//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+//    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+//            return "elencoChef.html";
+//        }
+		
+        return "elencoChef.html";
+    }
+	
+	
+	@GetMapping("/admin/elencoChef")
+	public String getElencoChefAdmin(Model model) {
+		List<Chef> elencoChef = chefService.findAll();
+		model.addAttribute("elencoChef", elencoChef);
+		model.addAttribute("role", this.chefService.getCredentialsService().getRoleAuthenticated());
+
+//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+//    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+//            return "elencoChef.html";
+//        }
+        return "elencoChef.html";
     }
 		
 	
@@ -92,40 +109,40 @@ public class ChefController {
 	public String getChef(@PathVariable ("id") Long id, Model model) {
 		Chef chef = chefService.findById(id);
 		model.addAttribute("chef", chef);
-    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/chef.html";
-        }
-        return "chef_default.html";
+//    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+//    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+//            return "admin/chef.html";
+//        }
+        return "chef.html";
 	}
 
 	
 	//mi ritorna la form...
 	//...MA prima mette nel modello un oggetto Chef appena creato
-	@GetMapping("/chefForm") 
+	@GetMapping("/admin/chefForm") 
 	public String getChefForm(Model model) {
 		model.addAttribute("chef", new Chef());
 		
-		return "admin/chefForm.html";
+		return "chefForm.html";
 	}
 	
 	
 	//se clicco su cancella mi porta alla pagina di conferma
-	@GetMapping("/toDeleteChef/{id}")
+	@GetMapping("/admin/toDeleteChef/{id}")
 	public String toDeleteChef(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("chef", chefService.findById(id));
 		
-		return "admin/toDeleteChef.html";
+		return "toDeleteChef.html";
 	}
 	
 	//confermo la cancellazione
-	@GetMapping("/deleteChef/{id}") 
+	@GetMapping("/admin/deleteChef/{id}") 
 	public String deleteChef(@PathVariable("id") Long id, Model model) {
 		chefService.deleteById(id);
 		model.addAttribute("elencoBuffet", chefService.findAll());
 		
-		return "admin/elencoChef.html";
+		return "elencoChef.html";
 	}
 	
 

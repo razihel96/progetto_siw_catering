@@ -2,27 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<title> Catering </title>
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	
+	<title>Admin: Roma3 Catering</title>
 </head>
 
-<body>
+<body class="body_index_login">
 
-	<h6>Menu Amministratore</h6>
-		
-	<h4> CATERING </h4>
-	<div>
-		<a th:href="@{/chefForm}"> Inserisci Chef </a>
-		<a th:href="@{/chef}"> </a> 
-	</div>	
-	<div>
-		<a th:href="@{/elencoChef}"> Visualizza gli Chef </a>
-		<a th:href="@{/chef}"> </a> 
-	</div>
-	<br>
-	<div>
-		<a th:href="@{/logout}">Logout</a>
+	<div class="nome_index_login">
+        <h1>ROMA3 CATERING</h1>
     </div>
-
 		
+		<div id="container_home">
+		
+			<div>
+				<a th:href="@{/admin/chefForm}"> Inserisci Chef </a>
+			</div>	
+			<div>
+				<a th:href="@{admin/elencoChef}"> Visualizza gli Chef </a>
+			</div>
+			<br>
+		
+		
+			<div>
+				<a class="a_index" th:href="@{/logout}">Logout</a>
+		    </div>
+
+		</div>
 </body>
 </html>

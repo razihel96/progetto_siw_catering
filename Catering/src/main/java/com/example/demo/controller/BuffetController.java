@@ -80,10 +80,10 @@ public class BuffetController {
 			model.addAttribute("buffet", buffet);
 						
 			//se è andato tutto a buon fine
-			return "admin/buffet.html";
+			return "buffet.html";
 		}
 		//se qualcosa è andato storto, torno alla form
-		return "admin/buffetForm.html";
+		return "buffetForm.html";
 		
 	}
 	
@@ -95,14 +95,16 @@ public class BuffetController {
 		Chef chef = chefService.findById(id);
 		List<Buffet> elencoBuffet = buffetService.getByChef(chef);
 		model.addAttribute("elencoBuffet", elencoBuffet);
-		
-		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/elencoBuffet.html";
-        }
-        return "elencoBuffet_default.html";
+		model.addAttribute("role", buffetService.getCredentialsService().getRoleAuthenticated());
+//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+//    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+//            return "admin/elencoBuffet.html";
+//        }
+        return "elencoBuffet.html";
     }
+	
+
 	
 	
 	
@@ -113,12 +115,12 @@ public class BuffetController {
 		Buffet buffet = buffetService.findById(id);
 		model.addAttribute("buffet", buffet);
 		
-		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/buffet.html";
-        }
-        return "buffet_default.html";
+//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+//    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+//            return "admin/buffet.html";
+//        }
+        return "buffet.html";
     }
 
 
@@ -126,33 +128,33 @@ public class BuffetController {
 	//mi ritorna la form...
 	//...MA prima mette nel modello un oggetto Buffet appena creato
 	/*
-	 * prendo l'id di uno chef e ci aggiungo il suo buffet
+	 * al buffet collego il suo chef prendendo l'id di quest'ultimo
 	 */
-	@GetMapping("/chef/{id}/buffetForm") 
+	@GetMapping("/admin/chef/{id}/buffetForm") 
 	public String creaBuffet(@PathVariable ("id") Long id, Model model) {
 		Chef chef = chefService.findById(id);
 		Buffet buffet = new Buffet();
 		buffet.setChef(chef);
 		model.addAttribute("buffet", buffet);
-		return "admin/buffetForm.html";
+		return "buffetForm.html";
 	}
 	
 	
 	//se clicco su cancella mi porta alla pagina di conferma
-	@GetMapping("/toDeleteBuffet/{id}")
+	@GetMapping("/admin/toDeleteBuffet/{id}")
 	public String toDeleteBuffet(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("buffet", buffetService.findById(id));
 		
-		return "admin/toDeleteBuffet.html";
+		return "toDeleteBuffet.html";
 	}
 	
 	//confermo la cancellazione
-	@GetMapping("/deleteBuffet/{id}") 
+	@GetMapping("/admin/deleteBuffet/{id}") 
 	public String deleteBuffet(@PathVariable("id") Long id, Model model) {
 		buffetService.deleteById(id);
 		model.addAttribute("elencoBuffet", buffetService.findAll());
 		
-		return "admin/elencoBuffet.html";
+		return "elencoBuffet.html";
 	}
 
 }
