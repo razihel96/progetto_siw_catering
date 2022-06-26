@@ -106,6 +106,8 @@ public class BuffetController {
 	@GetMapping("/buffet/{id}")
 	public String getBuffet(@PathVariable ("id") Long id, Model model) {
 		Buffet buffet = buffetService.findById(id);
+		Chef chef = buffet.getChef();
+		model.addAttribute("chef", chef);
 		model.addAttribute("buffet", buffet);
 		
 

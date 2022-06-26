@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.controller.validator.ChefValidator;
+import com.example.demo.model.Buffet;
 import com.example.demo.model.Chef;
+import com.example.demo.model.Piatto;
+import com.example.demo.service.BuffetService;
 import com.example.demo.service.ChefService;
+import com.example.demo.service.PiattoService;
 import com.example.demo.upload.FileUploadUtil;
 
 
@@ -32,6 +36,12 @@ public class ChefController {
 
 	@Autowired
 	private ChefValidator chefValidator;
+	
+	@Autowired
+	private PiattoService piattoService;
+	
+	@Autowired
+	private BuffetService buffetService; 
 
 
 
@@ -70,8 +80,11 @@ public class ChefController {
 
 	}
 
+	
+	
 
 	//prendo l'elenco degli chef
+	//qui c'era un "/admin/elencoChef"
 	@GetMapping("/elencoChef")
 	public String getElencoChef(Model model) {
 		List<Chef> elencoChef = chefService.findAll();
@@ -79,6 +92,30 @@ public class ChefController {
 		model.addAttribute("role", chefService.getCredentialsService().getRoleAuthenticated());
 
 		return "elencoChef.html";
+	}
+	
+	
+	//mi faccio ritornare l'elenco di tutti i piatti
+	@GetMapping("/elencoTuttiPiatti") 
+	public String getElencoTuttiPiatti(Model model) {
+		List<Piatto> elencoTuttiPiatti = piattoService.findAll();	
+
+		model.addAttribute("elencoPiatti", elencoTuttiPiatti);
+		model.addAttribute("role", piattoService.getCredentialsService().getRoleAuthenticated());
+		
+		return "elencoPiatti.html";
+	}
+	
+	
+	//mi faccio ritornare l'elenco di tutti i buffet
+	@GetMapping("/elencoTuttiBuffet") 
+	public String getElencoTuttiBuffet(Model model) {
+		List<Buffet> elencoTuttiBuffet = buffetService.findAll();	
+
+		model.addAttribute("elencoBuffet", elencoTuttiBuffet);
+		model.addAttribute("role", buffetService.getCredentialsService().getRoleAuthenticated());
+		
+		return "elencoBuffet.html";
 	}
 
 
@@ -125,6 +162,43 @@ public class ChefController {
 
 		return "elencoChef.html";
 	}
+	
+	
+	
+	
+	
+	
+	@GetMapping("/admin/toModificaChef/{id}")
+	public String toModificaChef(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("chef", chefService.findById(id));
+
+		return "chefFormUpdate.html";
+	}
+	
+	
+	//modifica dati dello chef
+	@PostMapping("/admin/modificaChef/{id}") 
+	public String modificaChef(@RequestParam("image") MultipartFile multipartFile, @PathVariable("id") Long id,
+			Model model, @ModelAttribute("chef") Chef chef ) throws IOException {
+		
+		Chef chefid = chefService.findById(id);
+		
+		chefid = chef;
+		
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		chefid.setPhotos(fileName);
+//		Chef salvaChef = this.chefService.inserisci(chefid);
+		String uploadDir = "chef-photos/" + chefid.getId();
+		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		
+		chefService.saveChef(chefid);
+		
+		model.addAttribute("role", chefService.getCredentialsService().getRoleAuthenticated());
+		
+		return "redirect:/default";
+	}
+	
+	
 
 
 

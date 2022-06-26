@@ -21,6 +21,9 @@
 				<br>
 				<span th:text = "${buffet.descrizione}"> DESCRIZIONE </span>
 				<br>
+				<br>
+				<div th:text="'Questo buffet è di ' + *{chef.nome} + ' ' + *{chef.cognome}"> mi ritorna il nome dello chef </div>
+				
 			</div>
 			<br>			
 			<br>

@@ -50,6 +50,8 @@
 
 					<a th:href="@{'/admin/piatto' + '/' + ${piatto.id} + '/ingredienteForm'}"> Inserisci ingrediente </a> 
 					 
+					<!-- <div th:text="'Il piatto sta in: ' + *{buffet.nome}"> mi ritorna il nome dello chef </div> -->
+					
 					
 					</li> 
 					
@@ -68,9 +70,7 @@
 					th:text="${piatto.nome}">NOME</a>
 					
 					
-					<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}"> Visualizza ingredienti </a>
-					
-					 
+					<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}"> Visualizza ingredienti </a>					
 					
 					</li> 
 					

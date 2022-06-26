@@ -66,9 +66,9 @@ public class AuthenticationController {
     	model.addAttribute("role", chefService.getCredentialsService().getRoleAuthenticated());
     	
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "elencoChef";
+            return "home";
         }
-        return "elencoChef";
+        return "home";
     }
 	
     @RequestMapping(value = { "/register" }, method = RequestMethod.POST)

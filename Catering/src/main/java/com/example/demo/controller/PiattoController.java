@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.controller.validator.PiattoValidator;
 import com.example.demo.model.Buffet;
+import com.example.demo.model.Chef;
 import com.example.demo.model.Piatto;
 import com.example.demo.service.BuffetService;
 import com.example.demo.service.PiattoService;
@@ -67,6 +68,7 @@ public class PiattoController {
 	public String getElencoPiatti(@PathVariable ("id") Long id, Model model) {
 		Buffet buffet = buffetService.findById(id);
 		List<Piatto> elencoPiatti = piattoService.getByBuffet(buffet);
+		model.addAttribute("buffet", buffet);
 		model.addAttribute("elencoPiatti", elencoPiatti);
 		model.addAttribute("role", this.piattoService.getCredentialsService().getRoleAuthenticated());
 
@@ -79,9 +81,14 @@ public class PiattoController {
 	@GetMapping("/piatto/{id}")
 	public String getPiatto(@PathVariable ("id") Long id, Model model) {
 		Piatto piatto = piattoService.findById(id);
+		Buffet buffet = piatto.getBuffet();
+		Chef chef = buffet.getChef();
+		model.addAttribute("chef", chef);
+		model.addAttribute("buffet", buffet);
 		model.addAttribute("piatto", piatto);
 		return "piatto.html";
 	}
+	
 
 	
 	

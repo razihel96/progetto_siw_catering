@@ -13,10 +13,13 @@
 			<div>Nome del piatto: <span th:text = "${piatto.nome}"> NOME </span> </div>
 			<div>Descrizione: <span th:text = "${piatto.descrizione}"> DESCRIZIONE </div>
 			<br>
+			<br>
+			
+			<div th:text="'Il piatto si trova nel ' + *{buffet.nome} + ' di ' + *{chef.nome} + ' ' + *{chef.cognome}"> mi ritorna il nome del buffet e lo chef </div>
 			
 			<br>
 			<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}"> Visualizza ingredienti </a>
-			
+			<br>			
 			
 		</div>
 	</div>

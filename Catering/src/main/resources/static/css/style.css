@@ -4,8 +4,20 @@
     box-sizing: border-box;
 }
 
-a { 
-    color: black;
+
+a:link { 
+    color: red;
+    text-decoration: none;
+}
+
+
+a:visited { 
+    color: red;
+    text-decoration: none;
+}
+
+a:visited:hover { 
+    color: white;
     text-decoration: none;
 }
 
@@ -167,27 +179,6 @@ footer a {
 /*****HOME_DEFAULT*****/
 /**********************/
 
-#container_home {
-    /*border: 2px solid blue;*/
-    
-
-    width: 50%;
-    margin: auto;
-
-    text-align: justify;
-
-    height: 300px;
-    background-color: rgb(240, 248, 255, 0.8);
-    border-radius: 10px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    padding: 0px 30px 0px 30px;
-    
-}
 
 #container_home h2 {
     color: rgb(151, 48, 48);
@@ -221,9 +212,9 @@ footer a {
 
 
 
-/******************************/
-/***REGISTRATION_SUCCESSFULL***/
-/******************************/
+/*****************************/
+/***REGISTRATION_SUCCESSFUL***/
+/*****************************/
 
 #home_rs {
     /*border: 2px solid red;*/
@@ -271,7 +262,7 @@ footer a {
 
 .testo_pagina h1 {
     /*border: 2px solid green;*/
-    font-size: 50px;
+    font-size: 40px;
     color:  rgb(151, 48, 48);
     width: 60%;
     margin: auto;
@@ -303,34 +294,25 @@ footer a {
 }
 
 
-.foto_chef {
-    /*border: 2px solid green;*/
-
-    width: 190px;
-    height: 190px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    box-shadow: 4px 4px 20px black;
-    
-}
-
 .container_chef {
     /*border: 2px solid green;*/
 
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background-color: rgb(151, 48, 48);
-    margin: 40px 0px 0px 40px;
-    border-radius: 20px;
+  
     font-size: 17px;
+    margin: 20px 20px 50px -10px;
+
 }
 
 .container_chef a:hover {
-    font-size: 19px;
-    color: aliceblue;
+    color: rgb(151, 48, 48);
 }
 
+.card-img-top {
+    height: 280px;
+}
 
 
 
@@ -477,3 +459,53 @@ footer a {
     padding: 80px 0px 0px 80px;
 }
 
+
+
+
+
+
+/****************************************/
+/******************BOOTSTRAP*************/
+/****************************************/
+
+
+
+
+
+/**************/
+/*****HOME*****/
+/**************/
+
+#container_home {
+    /*border: 2px solid blue;*/
+    
+    color: aliceblue;
+    width: 50%;
+    margin: auto;
+
+    text-align: justify;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0px 30px 0px 30px;
+    margin-top: 40px;
+    
+}
+
+
+.carousel-item {
+    /*border: 2px solid red;*/
+    width: 100%;
+    height: 400px;
+}
+
+#bottone {
+    /*border: 2px solid red;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}

@@ -30,6 +30,11 @@ public class ChefService {
 	}
 	
 	@Transactional
+	public Chef saveChef(Chef chef){
+		return cr.save(chef);
+	}
+	
+	@Transactional
 	public Chef inserisci(Chef chef) {
 		return cr.save(chef);
 	}
@@ -69,5 +74,15 @@ public class ChefService {
 	public CredentialsService getCredentialsService() {
 		return credentialsService;
 	}
+	
+	
+//	public Chef modificaChef(Long id) {
+//		Chef chef = cr.findById(id).get();
+//		chef.setNome(dettagliChef.getNome());
+//		chef.setCognome(dettagliChef.getCognome());
+//		chef.setNazionalita(dettagliChef.getNazionalita());
+//		
+//		return chef;
+//	}
 
 }

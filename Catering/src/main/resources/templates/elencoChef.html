@@ -4,42 +4,27 @@
 	<meta charset="UTF-8" />
 	<link th:href="@{/css/style.css}" rel="stylesheet">
 	
-	<title>Elenco chef</title>
+    <!--BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <title>Admin: elenco chef</title>
 </head>
 
-<body>
+<body  class="body_index_pagina">
+    
 
+    <div class="nome_index_pagina">
+        <h1>ROMA<span>3</span> CATERING</h1>
+    </div>
 
-
-<body class="body_index_pagina">
-
-	<div class="nome_index_pagina">
-		<h1>ROMA<span>3</span> CATERING</h1>
-	</div>
-	
-	
-	<div id="container_home">
-	
-	<h2>Perchè scegliere il nostro Catering?</h2>
-            
-            Ti offriamo un servizio di catering organizzato ed efficiente 
-            per ogni tuo desiderio o necessità. La Roma3 Catering sa come 
-            avverare ogni tuo sogno o fantasia, portandoti odori e sapori 
-            dell’antica tradizione romana, offrendoti un prodotto altamente 
-            personalizzato. 
-        
-        <h3>Dai un'occhiata ai nostri migliori! </h3> 
-	
-	</div>
-	
 
 	<div id="headerfoto">
 		<h2>GLI CHEF</h2>
 	</div>
 
-
+    
 	<div class="testo_pagina">
-		<h1>Tradizione e cultura nelle mani sapienti dei nostri Chef</h1>
+		<h1>TRADIZIONE E CULTURA NELLE MANI SAPIENTI DEI NOSTRI CHEF</h1>
 		<p> 
 			Una pasta artigianale dal sapore antico, trasformata in tante 
 			ricette insuperabili dagli chef più esperti e talentuosi del nostro 
@@ -50,82 +35,124 @@
 
 
 
+    <!-------------ADMIN-------------->
+    <div th:if="${role}=='ADMIN'">
+
+    <div id="bottone">
+    <button type="button" class="btn btn-outline-danger">            
+        <a th:href="@{/admin/chefForm}"> Inserisci Chef </a>
+    </button>
+	</div>
+
+
+
+    <ul id="elenco">
+			
+        <li th:each="chef : ${elencoChef}">
+
+
+            <div class="container_chef">
+
+
+                    <div class="card" style="width: 18rem;">
+                        <img th:src="@{${chef.photosImagePath}}" class="card-img-top" alt="" />
+                        <div class="card-body">
+                        <h5 class="card-title">Chef</h5>
+                        <span th:text="'Nome: ' + ${chef.nome}"> NOME </span>
+                        <br>
+                        <span th:text="'Cognome: ' + ${chef.cognome}"> COGNOME </span>
+                        <br>
+                        <span th:text="'Nazionalità: ' + ${chef.nazionalita}"> NAZIONALITA </span>        
+                        </div>
+
+
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <a href ="chef.html" th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}"
+                                th:text="Cancella">cancella</a>
+                            </li>
+
+                            <li class="list-group-item">
+                                <a th:href="@{'/admin/toModificaChef' + '/' + ${chef.id}}">Modifica</a>
+                            </li>
+                        
+                            <li class="list-group-item">
+                                <a th:href="@{'/admin/chef' + '/' + ${chef.id} + '/buffetForm'}"> Inserisci Buffet </a>
+                            </li>
+                            
+                            <li class="list-group-item">
+                                <a th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>
+                            </li>
+
+                        </ul>
+                        
+
+                    </div>
+                </div>
+        </li> 
+    </ul>
 
 
 
 
-	
-		<div th:if="${role}=='ADMIN'">
-		
-			<div>
-				<a th:href="@{/admin/chefForm}"> Inserisci Chef </a>
-			</div>	
+    <!-------------UTENTE-------------->
+
+<div th:unless="${role}=='ADMIN'">
+
+ 
+    <ul id="elenco">
 			
-			
-			
-			
-			
-			<ul id="elenco">
-			
-				<li th:each="chef : ${elencoChef}">
-				
-					<div class="container_chef">
-						<img class="foto_chef" th:src="@{${chef.photosImagePath}}"/>
-						
-						<span th:text="'Nome: ' + ${chef.nome}"> NOME </span>
-						<span th:text="'Cognome: ' + ${chef.cognome}"> COGNOME </span>
-						<span th:text="'Nazionalità: ' + ${chef.nazionalita}"> NAZIONALITA </span>
-						
-						<br>
-						<br>
-						<a href ="chef.html" th:href="@{'/admin/toDeleteChef' + '/' + ${chef.id}}"
-						th:text="Cancella">cancella</a>
-						<br>
-						<a th:href="@{'/admin/chef' + '/' + ${chef.id} + '/buffetForm'}"> Inserisci Buffet </a>
-						<br>
-						<a th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>
-					
-					
-					</div>
-				</li> 
-			</ul>
-				
-			
-		</div>
-			
-			
-			
-		<div th:unless="${role}=='ADMIN'">
-				
-				<ul id="elenco">
-					
-					<li th:each="chef : ${elencoChef}">
-			
-					<div class="container_chef">
-			
-						<img class="foto_chef" th:src="@{${chef.photosImagePath}}"/>
-				
-						<span th:text="'Nome: ' + ${chef.nome}"> NOME </span>
-						<span th:text="'Cognome: ' + ${chef.cognome}"> COGNOME </span>
-						<span th:text="'Nazionalità: ' + ${chef.nazionalita}"> NAZIONALITA </span>
-						<br>
-						<br>
-					
-						<a th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>
-					</div>
-					</li>
-				</ul>
-		</div>
-			
-			
-	
-		
-	<footer  class="footer_login">
+        <li th:each="chef : ${elencoChef}">
+
+
+            <div class="container_chef">
+
+
+                    <div class="card" style="width: 18rem;">
+                        <img th:src="@{${chef.photosImagePath}}" class="card-img-top" alt="" />
+                        <div class="card-body">
+                        <h5 class="card-title">Chef</h5>
+                        <span th:text="'Nome: ' + ${chef.nome}"> NOME </span>
+                        <br>
+                        <span th:text="'Cognome: ' + ${chef.cognome}"> COGNOME </span>
+                        <br>
+                        <span th:text="'Nazionalità: ' + ${chef.nazionalita}"> NAZIONALITA </span>        
+                        </div>
+
+
+
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item">
+                                <a th:href="@{'/chef' + '/' + ${chef.id} + '/elencoBuffet'}"> Visualizza Buffet </a>
+                            </li>
+
+                        </ul>
+                        
+
+                    </div>
+                </div>
+        </li> 
+    </ul>
+
+</div>
+
+
+    <footer  class="footer_login">
         <a href="/default"><img id="img_login" src="images/home2.png" alt=""> Home</a>
     </footer>
+    
+    
+    
     
     <div>
 		<a class="a_index" th:href="@{/logout}">Logout</a>
 	</div>
+
+
+<!--BOOTSTRAP-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 </body>
 </html>
