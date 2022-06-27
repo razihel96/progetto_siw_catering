@@ -93,6 +93,7 @@ public class BuffetController {
 		List<Buffet> elencoBuffet = buffetService.getByChef(chef);
 		model.addAttribute("elencoBuffet", elencoBuffet);
 		model.addAttribute("role", buffetService.getCredentialsService().getRoleAuthenticated());
+		model.addAttribute("chef", chef);
 
         return "elencoBuffet.html";
     }
@@ -133,14 +134,6 @@ public class BuffetController {
 	}
 	
 	
-//	@GetMapping("/admin/chef/buffetForm") 
-//	public String creaBuffet(Model model) {
-//		Buffet buffet = new Buffet();
-//		model.addAttribute("buffet", buffet);
-//		model.addAttribute("elencoBuffet", buffetService.findAll());
-//		
-//		return "buffetForm.html";
-//	}
 	
 	//se clicco su cancella mi porta alla pagina di conferma
 	@GetMapping("/admin/toDeleteBuffet/{id}")
@@ -157,7 +150,7 @@ public class BuffetController {
 		model.addAttribute("elencoBuffet", buffetService.findAll());
 		model.addAttribute("role", buffetService.getCredentialsService().getRoleAuthenticated());
 		
-		return "elencoBuffet.html";
+		return "elencoBuffet.html"; //potrei metterci un redirect
 	}
 
 }

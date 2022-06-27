@@ -44,60 +44,42 @@ ul {
 
 
 .nome_index_login { 
-    font-size: 70px;
     text-align: center;
-    margin-top: 130px;
+    margin-top: 100px;
     color: aliceblue;
     box-shadow: 12px 12px 32px black;
     margin-bottom: 30px;
 }
 
-.nome_index_login span {
-    color: rgb(151, 48, 48);
+.nome_index_login h1 { 
+    font-size: 100px;
 }
+
+.nome_index_login span { 
+   color: rgb(151, 48, 48);
+}
+
+
 
 #container_index {
     /*border: 2px solid blue;*/
 
-    width: 100%;
-    height: 300px;
+    width: 20%;
     margin: auto;
     margin-top: 40px;
 
     display: flex;
-    justify-content: center;
-
+    justify-content: space-around;
+    
     text-align: center;
+    padding: 30px;
 }
 
 
-.a_index {
-    /*border: 2px solid blue;*/
-    font-size: 20px;
-    cursor: pointer;
-
-    background-color: aliceblue;
-    padding: 8px 15px 8px 15px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: black;
-}
-
-.a_index:hover {
-    background-color: rgb(151, 48, 48) ;
-    color: aliceblue;
+.btn.btn-outline-danger.index {
     font-size: 22px;
-    box-shadow: 3px 3px 5px black;
 }
 
-#accedi {
-    margin-bottom: 40px;
-    padding: 10px;
-}
-
-#registrati {
-    padding: 10px;
-}
 
 
 
@@ -152,6 +134,7 @@ ul {
  #img_login {
     width: 30px;
     height: 30px;
+    margin-left: 15px;
 }
 
 .nomi_placeholder {
@@ -160,9 +143,6 @@ ul {
     margin-bottom: 15px;
 }
 
-footer a {
-	color: orange;
-}
 
 .footer_login {
     padding: 40px;
@@ -217,10 +197,10 @@ footer a {
 /*****************************/
 
 #home_rs {
-    /*border: 2px solid red;*/
-    margin-top: 30px;
+   /*border: 2px solid red;*/
+   text-align: center;
+   margin-top: 30px;
 }
-
 
 
 
@@ -383,8 +363,8 @@ footer a {
     padding: 80px 0px 0px 80px;
 }
 
-#griglia {
-    /*border: 2px solid yellow;*/
+.griglia {
+    /*border: 2px solid green;*/
 
     display: flex;
     justify-content: center;
@@ -392,32 +372,31 @@ footer a {
 }
 
 
-#griglia a {
+.griglia a {
     /*border: 2px solid blue;*/
 
-    margin-left: 50px ;
     color: aliceblue;
     align-self: center;
-    font-size: 20px;
 }
 
 
-#griglia a:hover {
+.griglia a:hover {
     color: rgb(151, 48, 48);
 }
 
 
-#griglia img {
-    width: 200px;
-    height: 200px;
-    border: 4px solid black;
+
+.griglia img {
     border-radius: 20px;
-    box-shadow: 5px 5px 30px black;
-    
 }
 
+.btn.btn-outline-danger {   
+    margin:3px;
+}
 
-
+.card-title {
+	font-size: 30px;
+}
 
 
 
@@ -469,6 +448,44 @@ footer a {
 /****************************************/
 
 
+/***********************/
+/*****ELENCO_PIATTI*****/
+/***********************/
+
+.container {
+    /*border: 2px solid yellow;*/
+
+    color: aliceblue;
+    margin: 80px 0px 80px 0px;
+    align-self: center;
+   
+}
+
+.row.row-cols-1.row-cols-sm-2.row-cols-md-4 {
+    /*border: 2px solid blue;*/
+
+    align-self: center;
+    width: 80%;
+    margin: auto;
+ 
+}
+
+.col {
+    /*border: 2px solid red;*/
+
+    text-align: center;
+    margin: auto;
+    padding: 20px;
+    color: aliceblue;
+
+}
+
+
+
+.btn.btn-outline-danger.piatto {
+    /*border: 2px solid yellow;*/
+}
+
 
 
 
@@ -508,4 +525,100 @@ footer a {
     justify-content: center;
     align-items: center;
     margin-top: 40px;
+}
+
+
+
+
+
+
+
+
+/**************/
+/*****FORM*****/
+/**************/
+
+.richiesta {
+    color: aliceblue;
+    text-align: center;
+    margin-top: 70px;
+}
+
+
+.container_form {
+    /*border: 2px solid red;*/
+
+    width: 40%;
+    margin: auto;
+    margin-top: 35px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-label {
+    color: aliceblue;
+}
+
+.btn.btn-outline-danger.form {
+    /*border: 2px solid yellow;*/
+    width: 140px;
+    margin: auto;
+    margin-top: 20px;
+
+}
+
+
+
+
+/*********************/
+/*****FORM BUFFET*****/
+/*********************/
+
+.container_form.buffet {
+    /*border: 2px solid red;*/
+}
+
+
+.informazioni {
+    /*border: 2px solid yellow;*/
+    color: aliceblue;
+    margin: auto;
+    width: 60%;
+    margin-top: 40px;
+    text-align: center;
+}
+
+
+
+/*********************/
+/*****HOME LOGOUT*****/
+/*********************/
+
+.home_logout {
+    /*border: 2px solid yellow;*/
+    margin: 40px 0px 40px 40px;
+
+}
+
+.container_form.buffet.log {
+    /*border: 2px solid yellow;*/
+    background-color: rgb(34, 42, 45, 0.8);
+    border-radius: 30px;
+    margin-top: 20px;
+}
+
+.btn.btn-outline-danger.form.log {
+    color: aliceblue;
+    border: 2px solid aliceblue;
+}
+
+.btn.btn-outline-danger.form.log:hover {
+    border: 2px solid red;
+}
+
+.container_form.buffet.log h1 {
+    color: aliceblue;
+    text-align: center;
 }

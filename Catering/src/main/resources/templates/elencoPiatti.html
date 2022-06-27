@@ -4,8 +4,13 @@
 	<meta charset="UTF-8" />
 	<link th:href="@{/css/style.css}" rel="stylesheet">
 	
+	<!--BOOTSTRAP-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	
 	<title>Admin: Elenco piatti</title>
 </head>
+
+
 
 <body class="body_index_pagina">
 
@@ -32,61 +37,103 @@
 
 
 
-	<div>
-			<div th:if="${role}=='ADMIN'">
-						
+<!-------------ADMIN-------------->
+<div th:if="${role}=='ADMIN'">
+
+
+			<ul>
+				<li th:each="piatto : ${elencoPiatti}">
+				
+						<div class="container">
+							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+							
+									<div class="col">
+									
+									<h2 th:text="${piatto.nome}"> NOME </h2>
+									<p th:text="${piatto.descrizione}"> DESCRIZIONE </p>
+										
+									</div>
+									
+									<div class="col">
+										<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}">
+										<button type="button" class="btn btn-outline-danger piatto"> 
+										Visualizza ingredienti </button></a>
+									</div>
+
+
+
+									<div class="col">
+										<a th:href="@{'/admin/piatto' + '/' + ${piatto.id} + '/ingredienteForm'}">
+										<button type="button" class="btn btn-outline-danger piatto"> 
+										Inserisci ingrediente </button></a>
+
+									</div>
+
+
+									<div class="col">
+										<a th:href="@{'/admin/toDeletePiatto' + '/' + ${piatto.id}}">
+										<button type="button" class="btn btn-outline-danger piatto"> 
+										Cancella </button></a>
+									</div>
+
+<hr>
+
+							</div>
+						</div>
+					
+				</li>
+			</ul>
+</div>
+
+
+
+
+<!-------------UTENTE-------------->
+<div th:unless="${role}=='ADMIN'">
+
+	<ul>
+		<li th:each="piatto : ${elencoPiatti}">
+
+				<div class="container">
+					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2">
+					
+								<div class="col">
+									<h2 th:text="${piatto.nome}"> NOME </h2>
+									<p th:text="${piatto.descrizione}"> DESCRIZIONE </p>
+								</div>
+									
+								<div class="col">
+										<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}">
+										<button type="button" class="btn btn-outline-danger piatto"> 
+										Visualizza ingredienti </button></a>
+								</div>
+
+					</div>
+				</div>
 			
-				<ul>
-					<li id=griglia th:each="piatto : ${elencoPiatti}">
-								
-					
-					<a href="piatto.html" th:href="@{'/piatto' + '/' + ${piatto.id}}" 
-					th:text="${piatto.nome}">NOME</a>
+		</li>
+	</ul>
 
-					<a href ="buffet.html" th:href="@{'/admin/toDeletePiatto' + '/' + ${piatto.id}}"
-					th:text="cancella">cancella piatto</a>
+</div>
 
-					<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}"> Visualizza ingredienti </a>
 
-					<a th:href="@{'/admin/piatto' + '/' + ${piatto.id} + '/ingredienteForm'}"> Inserisci ingrediente </a> 
-					 
-					<!-- <div th:text="'Il piatto sta in: ' + *{buffet.nome}"> mi ritorna il nome dello chef </div> -->
-					
-					
-					</li> 
-					
-				</ul>
-			</div>
-		
-		
-		
-			<div th:unless="${role}=='ADMIN'">
-		
-				<ul>
-					<li id=griglia th:each="piatto : ${elencoPiatti}">
-								
-					
-					<a href="piatto.html" th:href="@{'/piatto' + '/' + ${piatto.id}}" 
-					th:text="${piatto.nome}">NOME</a>
-					
-					
-					<a th:href="@{'/piatto' + '/' + ${piatto.id} + '/elencoIngredienti'}"> Visualizza ingredienti </a>					
-					
-					</li> 
-					
-				</ul>
-			</div>
-		
-	</div>
-		
 
-		
-	<footer  class="footer_login">
-        <a href="/default"><img id="img_login" src="images/home2.png" alt=""> Home</a>
-    </footer>
-    
-    <div>
-		<a class="a_index" th:href="@{/logout}">Logout</a>
-	</div>
+
+
+ <footer class="home_logout">
+        
+        <a th:href="@{/logout}">
+            <button type="button" class="btn btn-outline-danger"> 
+            Logout </button></a>
+
+        <a href="/default"><img id="img_login" src="images/home2.png" alt=""></a>
+        
+ </footer>
+ 
+ 
+
+<!--BOOTSTRAP-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 </body>
 </html>

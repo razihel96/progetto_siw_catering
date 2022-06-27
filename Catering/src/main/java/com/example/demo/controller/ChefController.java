@@ -99,10 +99,10 @@ public class ChefController {
 	@GetMapping("/elencoTuttiPiatti") 
 	public String getElencoTuttiPiatti(Model model) {
 		List<Piatto> elencoTuttiPiatti = piattoService.findAll();	
-
+	
 		model.addAttribute("elencoPiatti", elencoTuttiPiatti);
 		model.addAttribute("role", piattoService.getCredentialsService().getRoleAuthenticated());
-		
+
 		return "elencoPiatti.html";
 	}
 	
@@ -168,12 +168,16 @@ public class ChefController {
 	
 	
 	
+	
+	
 	@GetMapping("/admin/toModificaChef/{id}")
 	public String toModificaChef(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("chef", chefService.findById(id));
 
 		return "chefFormUpdate.html";
 	}
+	
+	
 	
 	
 	//modifica dati dello chef

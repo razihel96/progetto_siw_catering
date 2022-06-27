@@ -2,34 +2,77 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<title> Inserimento chef </title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    
+    
+    <!--BOOTSTRAP-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <title>Modifica chef</title>
 </head>
 
-<body>
-<form th:action="@{/admin/modificaChef/{id} (id=${chef.id}) }" method="post" th:object = "${chef}" enctype="multipart/form-data">
 
-	<div th:if="${#fields.hasGlobalErrors()}">
+<body class="body_index_pagina">
+	
+
+	<div class="nome_index_pagina">
+		<h1>ROMA<span>3</span> CATERING</h1>
+	</div>
+
+    <div class="richiesta">
+		<h5>MODIFICA CHEF</h5>
+	</div>
+    
+
+
+
+
+<form th:action="@{/admin/modificaChef/{id} (id=${chef.id})}" method="post" th:object = "${chef}" enctype="multipart/form-data">
+
+    <div th:if="${#fields.hasGlobalErrors()}">
 		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">ERRORE</p>
 	</div>
-	  
-	<div> Nome: <input type="text" th:field="*{nome}" /> </div>
-	<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+    
+<div class="container_form buffet">
+
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Nome</label>
+          <input type="text" th:field="*{nome}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Cognome</label>
+          <input type="text" th:field="*{cognome}" class="form-control" id="exampleInputPassword1">
+          <div th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Nazionalità</label>
+            <input type="text" th:field="*{nazionalita}" class="form-control" id="exampleInputPassword1">
+        	<div th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Foto</label>
+            <input class="form-control" type="file" id="formFile" name="image" accept="image/png, image/jpeg" required/>
+        </div>
+
+
+
+
+        <button type="submit" class= "btn btn-outline-danger form">Submit</button>
+     
+</div>
 	
-	<div> Cognome: <input type="text" th:field="*{cognome}" /> </div>
-	<div th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></div>
-	
-	<div> Nazionalità: <input type="text" th:field="*{nazionalita}" /> </div>
-	<div th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></div>
-	
-	<div> Foto: <input type="file" name="image" accept="image/png, image/jpeg" required/> </div>
-	
-	<br>
-	
-	
-	<div> <button type="submit"> Conferma </button> </div>
+
 </form>	
 
+
+
+<!--BOOTSTRAP-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 </body>
-
-
 </html>

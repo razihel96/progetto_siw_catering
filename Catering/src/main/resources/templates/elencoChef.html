@@ -38,11 +38,16 @@
     <!-------------ADMIN-------------->
     <div th:if="${role}=='ADMIN'">
 
+
+
     <div id="bottone">
-    <button type="button" class="btn btn-outline-danger">            
-        <a th:href="@{/admin/chefForm}"> Inserisci Chef </a>
-    </button>
+	   	<a th:href="@{/admin/chefForm}">
+		<button type="button" class="btn btn-outline-danger"> 
+		Inserisci Chef </button></a>
 	</div>
+	
+	
+	
 
 
 
@@ -139,17 +144,17 @@
 </div>
 
 
-    <footer  class="footer_login">
-        <a href="/default"><img id="img_login" src="images/home2.png" alt=""> Home</a>
-    </footer>
-    
-    
-    
-    
-    <div>
-		<a class="a_index" th:href="@{/logout}">Logout</a>
-	</div>
+   
 
+    <footer class="home_logout">
+        
+        <a th:href="@{/logout}">
+            <button type="button" class="btn btn-outline-danger"> 
+            Logout </button></a>
+
+        <a href="/default"><img id="img_login" src="images/home2.png" alt=""></a>
+        
+    </footer>
 
 <!--BOOTSTRAP-->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>

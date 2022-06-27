@@ -76,13 +76,5 @@ public class ChefService {
 	}
 	
 	
-//	public Chef modificaChef(Long id) {
-//		Chef chef = cr.findById(id).get();
-//		chef.setNome(dettagliChef.getNome());
-//		chef.setCognome(dettagliChef.getCognome());
-//		chef.setNazionalita(dettagliChef.getNazionalita());
-//		
-//		return chef;
-//	}
 
 }

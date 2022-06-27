@@ -2,48 +2,88 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<title> Inserimento ingrediente </title>
+	<link th:href="@{/css/style.css}" rel="stylesheet">
+	
+    <!--BOOTSTRAP-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <title>Inserimento ingrediente</title>
 </head>
 
-<body>
-
-			<span>Ingredienti già inseriti</span>
-			<li id="griglia" th:each="ingrediente : ${elencoIngredienti}">
-				
-				<span th:text="${ingrediente.nome}"> NOME </span>
-			
-			</li> 
-			
-			<br>
-			<br>
 
 
-<form th:action = "@{/ingrediente}" method = "post" th:object = "${ingrediente}">
+<body class="body_index_pagina">
+	
+	<div class="nome_index_pagina">
+		<h1>ROMA<span>3</span> CATERING</h1>
+	</div>
+
+    
+    
+
+<form th:action="@{/ingrediente}" method="post" th:object = "${ingrediente}">
+
+    <div class="richiesta">
+        <!-- verifico se sto inserendo il piatto corrente nel buffet giusto -->
+        <h5 th:text="'INSERISCI INGREDIENTE IN: ' + *{piatto.nome}">
+            INSERISCI INGREDIENTE IN: </h5>
+	</div>
+
+    <div class="informazioni">
+        <span>Ingredienti già inseriti: </span>
+        <li th:each="ingrediente : ${elencoIngredienti}">
+            <span th:text="${ingrediente.nome}"> NOME </span>
+        </li>
+
+    </div>
 
 
-        <div th:if="${#fields.hasGlobalErrors()}">
+    <div th:if="${#fields.hasGlobalErrors()}">
 		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">ERRORE</p>
 	</div>
-	  
-	<div> Nome: <input type="text" th:field="*{nome}" /> </div>
-	<div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+
+
+
+
+<div class="container_form buffet">
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Nome</label>
+          <input type="text" th:field="*{nome}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Descrizione</label>
+          <input type="text" th:field="*{descrizione}" class="form-control" id="exampleInputPassword1">
+          <div th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></div>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Origine</label>
+            <input type="text" th:field="*{origine}" class="form-control" id="exampleInputPassword1">
+            <div th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></div>
+        </div>
+
+
+
+
+    <!-- per farmi ritornare il nome dello chef devo passargli il suo id -->
+        <input type="hidden" name="idPiatto" th:value=*{piatto.id}> 
+        <button type="submit" class= "btn btn-outline-danger form">Submit</button>
+     
+</div>
 	
-	<div> Descrizione: <input type="text" th:field="*{descrizione}" /> </div>
-	<div th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></div>
-	
-	<div> Origine: <input type="text" th:field="*{origine}" /> </div>
-	<div th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></div>
-		
-	
-	
-	<div th:text=*{piatto.nome}> mi ritorna il nome del piatto</div>
-	
-	
-	<input type="hidden" name="idPiatto" th:value=*{piatto.id}>
-	
-	<div> <button type="submit"> Conferma </button> </div>
+
+
+
+
 </form>	
+
+
+
+<!--BOOTSTRAP-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 </body>
-
-
 </html>

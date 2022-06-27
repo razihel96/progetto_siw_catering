@@ -4,53 +4,79 @@
 	<meta charset="UTF-8" />
 	<link th:href="@{/css/style.css}" rel="stylesheet">
 	
-	<title>Registrazione</title>
-</head>
-<body class="body_index_login">
-    <div class="nome_index_login">
-        <h1>ROMA3 CATERING</h1>
-    </div>
-	
-	<div class="container_login">
-	<form th:action="@{/register}" method="POST">
-    <table>
-        <tr class="nomi_placeholder">
-            <td>Username:</td>
-            <td><input type="text" placeholder="username" required
-                       th:field="${credentials.username}"/></td>
-            <td th:if="${#fields.hasErrors('credentials.username')}"
-                th:errors="${credentials.username}" th:style="'color:red'"></td>
-        </tr>
-        <tr class="nomi_placeholder">
-            <td>Password:</td>
-            <td><input type="password" placeholder="password" required
-                       th:field="${credentials.password}"/></td>
-            <td th:if="${#fields.hasErrors('credentials.password')}"
-                th:errors="${credentials.password}" th:style="'color:red'"></td>
-        </tr>
-        <tr class="nomi_placeholder">
-            <td>Nome:</td>
-            <td><input type="text" placeholder="nome" required
-                       th:field="${user.nome}"/></td>
-            <td th:if="${#fields.hasErrors('user.nome')}"
-                th:errors="${user.nome}" th:style="'color:red'"></td>
-        </tr>
-        <tr class="nomi_placeholder">
-            <td>Cognome:</td>
-            <td><input type="text" placeholder="cognome" required
-                       th:field="${user.cognome}"/></td>
-            <td th:if="${#fields.hasErrors('user.cognome')}"
-                th:errors="${user.cognome}" th:style="'color:red'"></td>
-        </tr>
-    </table>
-    <div>
-        <button class="login" type="submit">Registra</button>
-    </div>
-	</form>
-	</div>
+	 <!--BOOTSTRAP-->
+	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     
-    <footer  class="footer_login">
-        <a href="/"><img id="img_login" src="images/home.png" alt=""> Home</a>
-    </footer>
+    <title>Register Form</title>
+</head>
+
+
+
+
+<body class="body_index_login">
+    
+	
+	<div class="nome_index_login">
+        <h1>ROMA<span>3</span> CATERING</h1>
+    </div>
+
+
+
+
+<form th:action="@{/register}" method="POST">
+
+	<div class="container_form buffet log">
+
+		<div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <input type="text" placeholder="username" th:field="${credentials.username}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required/>
+            <span th:if="${#fields.hasErrors('credentials.username')}"
+            th:errors="${credentials.username}" th:style="'color:red'"></span>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" placeholder="password" th:field="${credentials.password}" class="form-control" id="exampleInputPassword1" required/>
+            <span th:if="${#fields.hasErrors('credentials.password')}"
+            th:errors="${credentials.password}" th:style="'color:red'"></span>
+          </div>
+
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nome</label>
+            <input type="text" placeholder="nome" th:field="${user.nome}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required/>
+            <span th:if="${#fields.hasErrors('user.nome')}"
+            th:errors="${user.nome}" th:style="'color:red'"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Cognome</label>
+            <input type="text" placeholder="cognome" th:field="${user.cognome}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required/>
+            <span th:if="${#fields.hasErrors('user.cognome')}"
+            th:errors="${user.cognome}" th:style="'color:red'"></span>
+        </div>
+
+
+
+		<button type="submit" class= "btn btn-outline-danger form log">Registra</button>
+
+	  </div>
+
+</form>
+
+
+
+<footer class="home_logout">
+        
+	<a th:href="@{/logout}">
+	<button type="button" class="btn btn-outline-danger"> 
+	Logout </button></a>
+	
+</footer>
+    
+  
+<!--BOOTSTRAP-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 </body>
 </html>

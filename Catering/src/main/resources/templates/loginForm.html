@@ -4,33 +4,51 @@
 	<meta charset="UTF-8" />
 	<link th:href="@{/css/style.css}" rel="stylesheet">
 	
-	<title> LoginForm </title>
+	 <!--BOOTSTRAP-->
+	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    
+    <title>Login Form</title>
 </head>
 <body class="body_index_login">
-    <div class="nome_index_login">
+    
+	
+	<div class="nome_index_login">
         <h1>ROMA<span>3</span> CATERING</h1>
     </div>
 
-	<form th:action="@{/login}" method="POST">
-		<div class="container_login">
-			<div class="nomi_placeholder">
-				<span>Username:</span>
-				<span><input name="username" type="text" required /></span>
-			</div>		
-			<div class="nomi_placeholder">
-				<span>Password:</span>
-				<span><input name="password" type="password" required /></span>
-			</div>
-			<div>
-				<span><button class="login" type="submit">Login</button></span>
-			</div>
-		</div>
-	</form>
 
-    <footer class="footer_login">
-    	<a href="/"><img id="img_login" src="images/home.png" alt=""> Home</a>
-    </footer>
+<form th:action="@{/login}" method="POST">
+
+	<div class="container_form buffet log">
+		<div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input name="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required/>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input input name="password" type="password" class="form-control" id="exampleInputPassword1" required/>
+        </div>
+
+		<button type="submit" class= "btn btn-outline-danger form log">Accedi</button>
+
+	  </div>
+
+</form>
+
+
+
+<footer class="home_logout">
+        
+	<a th:href="@{/logout}">
+	<button type="button" class="btn btn-outline-danger"> 
+	Logout </button></a>
+	
+</footer>
     
   
+<!--BOOTSTRAP-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
 </body>
 </html>
