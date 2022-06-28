@@ -5,20 +5,9 @@
 }
 
 
-a:link { 
-    color: red;
-    text-decoration: none;
-}
-
-
-a:visited { 
-    color: red;
-    text-decoration: none;
-}
-
-a:visited:hover { 
-    color: white;
-    text-decoration: none;
+a:link {
+	text-decoration: none;
+	
 }
 
 
@@ -621,4 +610,14 @@ ul {
 .container_form.buffet.log h1 {
     color: aliceblue;
     text-align: center;
+}
+
+
+
+/*********************/
+/*******CANCELLA******/
+/*********************/
+
+.modal.fade {
+color: black;
 }

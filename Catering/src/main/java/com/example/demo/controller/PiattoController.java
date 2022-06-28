@@ -19,6 +19,7 @@ import com.example.demo.model.Buffet;
 import com.example.demo.model.Chef;
 import com.example.demo.model.Piatto;
 import com.example.demo.service.BuffetService;
+import com.example.demo.service.IngredienteService;
 import com.example.demo.service.PiattoService;
 
 
@@ -35,6 +36,8 @@ public class PiattoController {
 	@Autowired
 	private BuffetService buffetService;
 	
+	@Autowired
+	private IngredienteService ingredienteService;
 	
 	
 
@@ -71,8 +74,8 @@ public class PiattoController {
 		model.addAttribute("buffet", buffet);
 		model.addAttribute("elencoPiatti", elencoPiatti);
 		model.addAttribute("role", this.piattoService.getCredentialsService().getRoleAuthenticated());
-
-        return "elencoPiatti.html";
+		        
+		return "elencoPiatti.html";
     }
 
 	

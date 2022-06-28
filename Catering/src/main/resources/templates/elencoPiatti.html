@@ -59,9 +59,8 @@
 										<button type="button" class="btn btn-outline-danger piatto"> 
 										Visualizza ingredienti </button></a>
 									</div>
-
-
-
+								
+				
 									<div class="col">
 										<a th:href="@{'/admin/piatto' + '/' + ${piatto.id} + '/ingredienteForm'}">
 										<button type="button" class="btn btn-outline-danger piatto"> 
@@ -70,11 +69,43 @@
 									</div>
 
 
+
 									<div class="col">
-										<a th:href="@{'/admin/toDeletePiatto' + '/' + ${piatto.id}}">
-										<button type="button" class="btn btn-outline-danger piatto"> 
-										Cancella </button></a>
+										<!-- Button trigger modal -->
+										                            
+										<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
+										<p class="card-text">Cancella</p></button></a>
+										
+										<!-- Modal -->
+										<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog">
+										    
+										    <div class="modal-content">
+										      
+										      <div class="modal-header">
+										        <h5 class="modal-title" id="exampleModalLabel">Cancellazione</h5>
+										        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										      </div>
+										      
+										      <div class="modal-body">
+										        Confermare la cancellazione?
+										      </div>
+										      
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+											        <a th:href="@{'/admin/deletePiatto' + '/' + ${piatto.id}}">
+											        <button type="button" class="btn btn-danger"> Conferma </button> </a>	
+										     
+										      </div>
+										    
+										    
+										    </div>
+										  
+										  </div>
+										</div>
 									</div>
+									
+									
 
 <hr>
 
@@ -126,7 +157,7 @@
             <button type="button" class="btn btn-outline-danger"> 
             Logout </button></a>
 
-        <a href="/default"><img id="img_login" src="images/home2.png" alt=""></a>
+        <a href="/default"><img id="img_login" src="/images/home2.png" alt=""></a>
         
  </footer>
  
