@@ -23,12 +23,6 @@ public class PiattoService {
 	private CredentialsService credentialsService;
 	
 	
-	//ci pensa spring boot ad aprire e chiudere la transazione (INTERROGAZIONE TRANSAZIONALE)
-//	@Transactional
-//	public void save(Piatto piatto)  {
-//		pr.save(piatto);
-//	}
-	
 	
 	@Transactional
 	public Piatto save(Piatto piatto) {

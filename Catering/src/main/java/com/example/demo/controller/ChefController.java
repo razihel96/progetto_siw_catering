@@ -99,7 +99,9 @@ public class ChefController {
 	@GetMapping("/elencoTuttiPiatti") 
 	public String getElencoTuttiPiatti(Model model) {
 		List<Piatto> elencoTuttiPiatti = piattoService.findAll();	
-	
+		
+		
+				
 		model.addAttribute("elencoPiatti", elencoTuttiPiatti);
 		model.addAttribute("role", piattoService.getCredentialsService().getRoleAuthenticated());
 
@@ -159,6 +161,21 @@ public class ChefController {
 	@GetMapping("/admin/deleteChef/{id}") 
 	public String deleteChef(@PathVariable("id") Long id, Model model) {
 		chefService.deleteById(id);
+		
+		model.addAttribute("elencoChef", chefService.findAll());
+		model.addAttribute("role", chefService.getCredentialsService().getRoleAuthenticated());
+
+		return "elencoChef.html";
+	}
+	
+	
+	
+	//cancellazione diretta
+	@GetMapping("/admin/cancellaChef/{id}") 
+	public String cancellaChef(@PathVariable("id") Long id, Model model) {
+		
+		Chef chef = chefService.findById(id);
+		chefService.delete(chef);
 		model.addAttribute("elencoChef", chefService.findAll());
 		model.addAttribute("role", chefService.getCredentialsService().getRoleAuthenticated());
 
@@ -201,7 +218,7 @@ public class ChefController {
 		
 		model.addAttribute("role", chefService.getCredentialsService().getRoleAuthenticated());
 		
-		return "redirect:/default";
+		return "redirect:/elencoChef";
 	}
 	
 	

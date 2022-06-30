@@ -51,6 +51,7 @@
 									
 									<h2 th:text="${piatto.nome}"> NOME </h2>
 									<p th:text="${piatto.descrizione}"> DESCRIZIONE </p>
+									<h6 th:text="'Questo piatto fa parte del ' + ${piatto.buffet.nome} + ' dello chef ' + ${piatto.buffet.chef.cognome}"></h6>
 										
 									</div>
 									
@@ -73,11 +74,12 @@
 									<div class="col">
 										<!-- Button trigger modal -->
 										                            
-										<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"> 
+										<button type="button" class="btn btn-outline-danger" th:attr="data-bs-target='#exampleModal' + ${piatto.id}"
+										data-bs-toggle="modal"> 
 										<p class="card-text">Cancella</p></button></a>
 										
 										<!-- Modal -->
-										<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal fade" th:id="'exampleModal' + ${piatto.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 										  <div class="modal-dialog">
 										    
 										    <div class="modal-content">
@@ -89,6 +91,8 @@
 										      
 										      <div class="modal-body">
 										        Confermare la cancellazione?
+										        <br>
+						        				<span th:text = "${piatto.nome}"> NOME </span>
 										      </div>
 										      
 										      <div class="modal-footer">

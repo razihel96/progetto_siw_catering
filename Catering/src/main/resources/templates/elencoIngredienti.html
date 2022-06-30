@@ -18,7 +18,7 @@
 		<h1>ROMA<span>3</span> CATERING</h1>
 	</div>
 
-    <div id="headerfoto_piatto">
+    <div id="headerfoto_ingrediente">
 		<h2>GLI INGREDIENTI</h2>
 	</div>
 
@@ -52,16 +52,47 @@
 								</div>
 										
 					
-			
-
-
+									
+									
 									<div class="col">
-										<a th:href="@{'/admin/toDeleteIngrediente' + '/' + ${ingrediente.id}}">
-										<button type="button" class="btn btn-outline-danger piatto"> 
-										Cancella </button></a>
+										<!-- Button trigger modal -->
+										                            
+										<button type="button" class="btn btn-outline-danger" th:attr="data-bs-target='#exampleModal' + ${ingrediente.id}" 
+										data-bs-toggle="modal"> 
+										<p class="card-text">Cancella</p></button></a>
+										
+										<!-- Modal -->
+										<div class="modal fade" th:id="'exampleModal' + ${ingrediente.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog">
+										    
+										    <div class="modal-content">
+										      
+										      <div class="modal-header">
+										        <h5 class="modal-title" id="exampleModalLabel">Cancellazione</h5>
+										        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										      </div>
+										      
+										      <div class="modal-body">
+										        Confermare la cancellazione?
+										        <br>
+						        				<span th:text = "${ingrediente.nome}"> NOME </span>
+										      </div>
+										      
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+											        <a th:href="@{'/admin/deleteIngrediente' + '/' + ${ingrediente.id}}">
+											        <button type="button" class="btn btn-danger"> Conferma </button> </a>	
+										     
+										      </div>
+										    
+										    
+										    </div>
+										  
+										  </div>
+										</div>
 									</div>
-
-
+									
+		
 
 							</div>
 						</div>
@@ -77,7 +108,7 @@
 <div th:unless="${role}=='ADMIN'">
 
 	<ul>
-		<li th:each="piatto : ${elencoPiatti}">
+		<li th:each="ingrediente : ${elencoIngredienti}">
 
 				<div class="container">
 					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-2">

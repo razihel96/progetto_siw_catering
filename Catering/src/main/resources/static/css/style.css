@@ -429,6 +429,24 @@ ul {
 
 
 
+/****************************/
+/*****ELENCO_INGREDIENTI*****/
+/****************************/
+
+#headerfoto_ingrediente {
+    margin-top: 60px;
+    height: 500px;
+    background-image: url(/images/ingrediente.jpg);
+    background-size: cover;
+}
+
+#headerfoto_ingrediente h2 {
+    /*border: 2px solid yellow;*/
+
+    font-size: 50px;
+    color: aliceblue;
+    padding: 80px 0px 0px 80px;
+}
 
 
 
@@ -469,6 +487,9 @@ ul {
 
 }
 
+.col h6 {
+	font-size: 9px;
+}
 
 
 .btn.btn-outline-danger.piatto {
