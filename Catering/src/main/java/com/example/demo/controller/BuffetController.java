@@ -118,7 +118,7 @@ public class BuffetController {
 
 	
 	//mi ritorna la form...
-	//...MA prima mette nel modello un oggetto Buffet appena creato
+	//...MA prima metto nel modello un oggetto Buffet appena creato
 	/*
 	 * al buffet collego il suo chef prendendo l'id di quest'ultimo
 	 */

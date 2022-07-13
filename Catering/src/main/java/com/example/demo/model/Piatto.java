@@ -33,13 +33,7 @@ public class Piatto {
 	 */
 	@ManyToOne
 	private Buffet buffet; //un piatto si trova in un solo buffet
-	
-//	@ManyToMany (cascade = CascadeType.PERSIST)
-//	@JoinTable(
-//			name = "piatto_ingrediente",
-//			joinColumns = @JoinColumn(name = "piatto_id"),
-//			inverseJoinColumns = @JoinColumn(name = "ingrediente_id")
-//			)
+
 	
 	@OneToMany (mappedBy = "piatto", cascade = CascadeType.ALL)
 	private List<Ingrediente> ingredienti; //un piatto può avere più ingredienti
@@ -51,7 +45,7 @@ public class Piatto {
 	}
 	
 	
-	public Piatto(@NotBlank String nome,
+	public Piatto(String nome,
 			List<Ingrediente> ingredienti) {
 		this.nome = nome;
 		this.ingredienti = ingredienti;

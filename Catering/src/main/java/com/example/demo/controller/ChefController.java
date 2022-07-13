@@ -95,13 +95,12 @@ public class ChefController {
 	}
 	
 	
+	
 	//mi faccio ritornare l'elenco di tutti i piatti
 	@GetMapping("/elencoTuttiPiatti") 
 	public String getElencoTuttiPiatti(Model model) {
 		List<Piatto> elencoTuttiPiatti = piattoService.findAll();	
 		
-		
-				
 		model.addAttribute("elencoPiatti", elencoTuttiPiatti);
 		model.addAttribute("role", piattoService.getCredentialsService().getRoleAuthenticated());
 
@@ -109,11 +108,12 @@ public class ChefController {
 	}
 	
 	
+	
 	//mi faccio ritornare l'elenco di tutti i buffet
 	@GetMapping("/elencoTuttiBuffet") 
 	public String getElencoTuttiBuffet(Model model) {
-		List<Buffet> elencoTuttiBuffet = buffetService.findAll();	
-
+		List<Buffet> elencoTuttiBuffet = buffetService.findAll();
+		
 		model.addAttribute("elencoBuffet", elencoTuttiBuffet);
 		model.addAttribute("role", buffetService.getCredentialsService().getRoleAuthenticated());
 		
@@ -133,6 +133,7 @@ public class ChefController {
 		return "chef.html";
 	}
 
+	
 
 	//mi ritorna la form...
 	//...MA prima mette nel modello un oggetto Chef appena creato
@@ -156,6 +157,7 @@ public class ChefController {
 		return "toDeleteChef.html";
 	}
 
+	
 
 	//confermo la cancellazione
 	@GetMapping("/admin/deleteChef/{id}") 
@@ -186,9 +188,6 @@ public class ChefController {
 	
 	
 	
-	
-	
-	
 	@GetMapping("/admin/toModificaChef/{id}")
 	public String toModificaChef(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("chef", chefService.findById(id));
@@ -210,7 +209,6 @@ public class ChefController {
 		
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 		chefid.setPhotos(fileName);
-//		Chef salvaChef = this.chefService.inserisci(chefid);
 		String uploadDir = "chef-photos/" + chefid.getId();
 		FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 		

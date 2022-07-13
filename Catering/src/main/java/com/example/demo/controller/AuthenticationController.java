@@ -60,14 +60,14 @@ public class AuthenticationController {
     @RequestMapping(value = "/default", method = RequestMethod.GET)
     public String defaultAfterLogin(Model model) {
         
-    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+//    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	model.addAttribute("elencoChef", chefService.findAll());
     	model.addAttribute("role", chefService.getCredentialsService().getRoleAuthenticated());
     	
-    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "home";
-        }
+//    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+//            return "home";
+//        }
         return "home";
     }
 	

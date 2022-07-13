@@ -7,7 +7,7 @@
 	<!--BOOTSTRAP-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 	
-	<title>Admin: Elenco piatti</title>
+	<title>Roma3 Catering: I piatti</title>
 </head>
 
 
@@ -40,6 +40,8 @@
 <!-------------ADMIN-------------->
 <div th:if="${role}=='ADMIN'">
 
+	
+
 
 			<ul>
 				<li th:each="piatto : ${elencoPiatti}">
@@ -51,7 +53,7 @@
 									
 									<h2 th:text="${piatto.nome}"> NOME </h2>
 									<p th:text="${piatto.descrizione}"> DESCRIZIONE </p>
-									<h6 th:text="'Questo piatto fa parte del ' + ${piatto.buffet.nome} + ' dello chef ' + ${piatto.buffet.chef.cognome}"></h6>
+									<h6 th:text="'Questo piatto fa parte del ' + ${piatto.buffet.nome} + ' dello chef ' + ${piatto.buffet.chef.cognome}" class="badge text-bg-danger">BUFFET-CHEF</h6>
 										
 									</div>
 									
@@ -118,7 +120,10 @@
 					
 				</li>
 			</ul>
+			
+					
 </div>
+
 
 
 
@@ -135,6 +140,10 @@
 								<div class="col">
 									<h2 th:text="${piatto.nome}"> NOME </h2>
 									<p th:text="${piatto.descrizione}"> DESCRIZIONE </p>
+									
+									<h6 th:text="'Questo piatto fa parte del ' + ${piatto.buffet.nome} + ' dello chef ' + ${piatto.buffet.chef.cognome}" class="badge text-bg-danger">BUFFET-CHEF</h6>
+									
+									
 								</div>
 									
 								<div class="col">

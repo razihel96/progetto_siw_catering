@@ -19,7 +19,6 @@ import com.example.demo.model.Buffet;
 import com.example.demo.model.Chef;
 import com.example.demo.model.Piatto;
 import com.example.demo.service.BuffetService;
-import com.example.demo.service.IngredienteService;
 import com.example.demo.service.PiattoService;
 
 
@@ -35,9 +34,7 @@ public class PiattoController {
 	
 	@Autowired
 	private BuffetService buffetService;
-	
-	@Autowired
-	private IngredienteService ingredienteService;
+
 	
 	
 
@@ -64,6 +61,8 @@ public class PiattoController {
 		}
 		return "piattoForm.html";
 	}
+	
+	
 
 
 	//prendo l'elenco dei piatti tramite l'id del buffet
@@ -89,6 +88,7 @@ public class PiattoController {
 		model.addAttribute("chef", chef);
 		model.addAttribute("buffet", buffet);
 		model.addAttribute("piatto", piatto);
+		
 		return "piatto.html";
 	}
 	
@@ -108,6 +108,7 @@ public class PiattoController {
 		piatto.setBuffet(buffet);
 		model.addAttribute("piatto", piatto);
 		model.addAttribute("elencoPiatti", piattoService.findAll());
+		
 		return "piattoForm.html";
 	}
 
@@ -121,6 +122,8 @@ public class PiattoController {
 		
 		return "toDeletePiatto.html";
 	}
+	
+	
 	
 	//confermo la cancellazione
 	@GetMapping("/admin/deletePiatto/{id}") 
